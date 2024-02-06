@@ -1,0 +1,168 @@
+
+  
+  .hidden {
+    display: none;
+  }
+  body.scroll-enabled {
+    overflow-y: scroll;
+  }
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+}
+
+  .overlay h1 {
+    /* position: sticky; Set the h1 element to sticky positioning */
+    font-size: 3rem;
+    color: white;
+  }
+  
+.location {
+    position: fixed;
+    left: auto;
+    right:auto;
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+  }
+.headingOne
+{
+  color: white;
+  position: fixed;
+  bottom:17em;
+  left: 1em;
+}
+.headingTwo
+{
+  color: white;
+  position: fixed;
+  bottom:7em;
+  left: 1em;
+}
+.item {
+  height: 10em;
+  width: 10em;
+  margin: 1em 1em;
+  background-color: navy;
+  color: white;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+  opacity: 0;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  cursor: pointer;
+  flex: 0 0 auto; /* Adjust flex property to allow items to grow and shrink */
+}
+.memContainer
+{
+  position: fixed;
+  bottom: 28em;
+  left: auto;
+  right: auto;
+  display: flex; /* Add flex display */
+  flex-wrap: wrap; /* Allow items to wrap to new lines */
+  justify-content: center;
+}
+.classesContainer
+{
+  position: fixed;
+  bottom: 3em;
+  right: auto;
+  left: auto;
+  display: flex; /* Add flex display */
+  flex-wrap: wrap;
+  justify-content: center; 
+}
+.box
+{
+  width: 10em;
+  height: 10em;
+  margin-right: 10pem;
+}
+
+.animated {
+  animation: animate 1s ease-in 1 forwards;
+}
+
+@keyframes animate {
+  from {
+    opacity: 0;
+  }
+  
+  to {
+    opacity: 1;
+  }
+}
+
+.stt {
+  display: none;
+  position: fixed;
+  top:1em;
+  right: 45%;
+  justify-content: center;
+  align-items: center;
+  white-space: nowrap;
+  height: 2em;
+  background: white;
+}
+  .stt::before {
+    position: fixed;
+    display: block;
+    text-indent: 0;
+    left: -0.15em;
+    top: -0.2em;
+  }
+  .pointer {
+    position: absolute;
+    bottom:3rem;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 1.5rem;
+    color: white;
+  }
+  .pointer select{
+    bottom:3rem;
+  }
+  .pointer h3 {
+    margin-top: 1rem;
+    animation: pointer 1s infinite;
+    color: rgba(255, 255, 255);
+}
+
+  @keyframes pointer {
+    0% {
+      opacity: 0;
+      transform: translateY(0);
+    }
+    90% {
+      opacity: 1;
+      transform: translateY(1rem);
+    }
+    100% {
+      opacity: 0;
+      transform: translateY(2rem);
+    }
+  }
+  @media (max-width: 768px) {
+    .container {
+      text-indent: 0; /* Reset text indent for small viewports */
+    }
+    .item {
+      margin: 3em 0.5em; /* Reduce margin for small viewports */
+    }
+  }
