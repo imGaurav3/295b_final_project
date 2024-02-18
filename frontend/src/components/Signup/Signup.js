@@ -112,6 +112,21 @@ class Signup extends PureComponent {
       <div>{redirectVar}
       <MDBContainer className="my-5 gradient-form">
         <MDBRow>
+        <MDBCol col="6" className="mb-5">
+            <div className="d-flex flex-column  justify-content-center gradient-custom-2 h-100 mb-4">
+              <div className="text-white px-3 py-4 p-md-5 mx-md-4">
+                <h4 className="mb-4">
+                  Need to track your gym activities? We got it all
+                  covered!{" "}
+                </h4>
+                <p className="small mb-0">
+                  Register with us to start your fitness journey!!
+                </p>
+                <img src={pic} style={{ width: "485px" }} alt="logo" />
+              </div>
+            </div>
+          </MDBCol>
+
           <MDBCol col="6" className="mb-5">
             <div className="d-flex flex-column ms-5">
               <div className="text-center">
@@ -192,20 +207,7 @@ class Signup extends PureComponent {
             </div>
           </MDBCol>
 
-          <MDBCol col="6" className="mb-5">
-            <div className="d-flex flex-column  justify-content-center gradient-custom-2 h-100 mb-4">
-              <div className="text-white px-3 py-4 p-md-5 mx-md-4">
-                <h4 className="mb-4">
-                  Need to track your gym activities? We got it all
-                  covered!{" "}
-                </h4>
-                <p className="small mb-0">
-                  Register with us to start your fitness journey!!
-                </p>
-                <img src={pic} style={{ width: "485px" }} alt="logo" />
-              </div>
-            </div>
-          </MDBCol>
+          
         </MDBRow>
       </MDBContainer>
       </div>
