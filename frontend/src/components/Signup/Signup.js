@@ -24,6 +24,7 @@ class Signup extends PureComponent {
       // userheight: '',
       password: '',
       confirmPassword: '',
+      dob: '', // Add this line for the DOB
       //redirect: "/"
     };
   }
@@ -74,6 +75,12 @@ class Signup extends PureComponent {
       confirmPassword: e.target.value,
     });
   };
+  dobChangeHandler = (e) => {
+    this.setState({
+      dob: e.target.value,
+    });
+  };
+
   registerUser = () => {
     if (this.state.password !== this.state.confirmPassword) {
       alert('Passwords do not match.');
@@ -86,6 +93,7 @@ class Signup extends PureComponent {
       // weight: this.state.userweight,
       // height: this.state.userheight,
       password: this.state.password,
+      dob: this.state.dob,
     };
     axios({
       url: `${url}/user/signup`,
@@ -208,6 +216,15 @@ class Signup extends PureComponent {
                     name='confirmPassword'
                     placeholder='Confirm Password'
                     onChange={this.confirmPasswordChangeHandler}
+                  />
+                </div>
+                <div className='form-group'>
+                  <input
+                    type='date'
+                    className='form-control'
+                    name='dob'
+                    placeholder='Date of Birth'
+                    onChange={this.dobChangeHandler}
                   />
                 </div>
                 <div className='text-center pt-1 mb-5 pb-1'>
