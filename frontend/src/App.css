@@ -155,6 +155,11 @@ body {
   color: #ccc;
 }
 
+.signin-link{
+  font-size: 17px;
+  font-weight: 400;
+  color: #b196e4;
+}
 
 
 .background-radial-gradient {

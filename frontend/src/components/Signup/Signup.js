@@ -154,7 +154,6 @@ class Signup extends PureComponent {
                     Sign up and give your mood the upgrade it deserves!
                   </h1>
                 </div>
-                <br></br>
 
                 <label htmlFor='username' className='signup-labels'>Full Name</label>
                 <div className='form-group'>
@@ -246,16 +245,16 @@ class Signup extends PureComponent {
                     style={{ backgroundColor: '#3A3A3B', color: '#F7F7FF', border: '0.5px solid #767676', borderRadius: '5px' }}
                   />
                 </div>
-                <div className='text-center pt-1 mb-5 pb-1'>
+                <div className='text-center pt-1 pb-1'>
                   <Button onClick={this.registerUser} style={{ backgroundColor: '#A388C5', color: '#F7F7FF', borderRadius: '5px' }}>
                     Sign Me Up!
                   </Button>
                 </div>
 
                 <div className='d-flex flex-row align-items-center justify-content-center pb-4 mb-4'>
-                  <p className='large fw-bold mt-2 pt-1 mb-2'>
+                  <p className='signup-labels large fw-bold mt-2 pt-1 mb-2'>
                     Already have an account?{' '}
-                    <a href='/login' className='link-danger'>
+                    <a href='/login' className='link-danger signin-link'>
                       <b>Sign In!</b>
                     </a>
                   </p>
