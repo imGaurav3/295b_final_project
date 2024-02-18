@@ -49,7 +49,7 @@ export default function Navbar() {
             >
               <img src={logo} style={{ width: "55px" }} alt="logo" />
               <Link style={{ color: "White" }} to="/">
-                 APYY Fitness
+                 Moodify
               </Link>
             </Typography>
             <IconButton

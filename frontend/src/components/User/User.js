@@ -128,7 +128,7 @@ const getLocations = async () => {
       <div style={{ height: "300vh", width: "100vw", background: `url(${backgroundImage}) no-repeat center center fixed`,backgroundSize: "cover"}}></div>
         <div onTouchMove={handleTouchMove} className="overlay">
         <a href = "/login" style={{ color: "white", position: "fixed", top: "2rem", right: "5rem", fontWeight:"bold" }}>Sign-In/Sign-Up</a>
-         <h1>Welcome to APYY Fitness</h1>
+         <h1>Welcome to Moodify!</h1>
         </div>
          {/* <img src="/Users/yashasvirao/Desktop/TeamProject/team-project-team_apyy/healthclub_project/frontend/src/components/User/gymbackground.jpeg'" alt="Gym Background"style={{ height: "100vh", width: "100vw",backgroundSize: "cover"}} /> */}
          <div className="location">
