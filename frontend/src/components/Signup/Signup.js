@@ -127,50 +127,58 @@ class Signup extends PureComponent {
       redirectVar = <Redirect to={this.state.redirect} />;
     }
     return (
-      <div className='signup-page' style={{ backgroundColor: '#272626' }}>
+      <div className='signup-page'>
         {redirectVar}
-        <MDBContainer className='my-5 gradient-form'>
+        <MDBContainer className='my-5 signup-form-left'>
           <MDBRow>
             <MDBCol col='6' className='mb-5'>
               {/* <div className='d-flex flex-column  justify-content-center gradient-custom-2 h-100 mb-4'> */}
-                <div className='text-white px-3 py-4 p-md-5 mx-md-4'>
+                <div className='text-white px-3 py-4 p-md-5'>
                   {/* <h4 className='mb-4'>
                     Need to track your gym activities? We got it all covered!{' '}
                   </h4>
                   <p className='small mb-0'>
                     Register with us to start your fitness journey!!
                   </p> */}
-                  <img src={pic} style={{ width: '485px' }} alt='logo' />
+                  <img src={pic} style={{ width: '485px', paddingRight: '20px' }} alt='logo' />
                 </div>
               {/* </div> */}
             </MDBCol>
 
-            <MDBCol col='6' className='mb-5'>
+            <MDBCol col='6' className='mb-5' style={{ paddingRight: "20px"}}>
               <div className='d-flex flex-column ms-5'>
                 <div className='text-center'>
                   {/* <img src={logo} style={{ width: '185px' }} alt='logo' /> */}
                   <h1 className='bookheading'>
-                    Start your fitness journey with us
+                    {/* Sign up to begin, because your mood deserves an upgrade! */}
+                    Sign up and give your mood the upgrade it deserves!
                   </h1>
                 </div>
                 <br></br>
 
+                <label htmlFor='username' className='signup-labels'>Full Name</label>
                 <div className='form-group'>
                   <input
                     type='text'
                     className='form-control'
                     name='username'
-                    placeholder='Full Name'
+                    placeholder='Enter your full name'
+                    color='#F7F7FF'
+                    style={{ backgroundColor: '#3A3A3B', color: '#F7F7FF', border: '0.5px solid #767676', borderRadius: '5px' }}
                     onChange={this.usernameChangeHandler}
                   />
                 </div>
+
+                <label htmlFor='useremail' className='signup-labels'>Email</label>
                 <div className='form-group'>
                   <input
                     type='email'
                     className='form-control'
                     name='useremail'
-                    placeholder='user@example.com'
+                    placeholder='Enter your email address'
+                    color='#F7F7FF'
                     onChange={this.emailChangehandler}
+                    style={{ backgroundColor: '#3A3A3B', color: '#F7F7FF', border: '0.5px solid #767676', borderRadius: '5px' }}
                   />
                 </div>
                 {/* <div className='form-group'>
@@ -200,24 +208,34 @@ class Signup extends PureComponent {
                     onChange={this.heightChangehandler}
                   />
                 </div> */}
+
+                <label htmlFor='password' className='signup-labels'>Password</label>
                 <div className='form-group'>
                   <input
                     type='password'
                     className='form-control'
                     name='password'
-                    placeholder='password'
+                    placeholder='Create a strong password'
+                    color='#F7F7FF'
                     onChange={this.passwordChangeHandler}
+                    style={{ backgroundColor: '#3A3A3B', color: '#F7F7FF', border: '0.5px solid #767676', borderRadius: '5px' }}
                   />
                 </div>
+
+                <label htmlFor='confirmPassword' className='signup-labels'>Confirm Password</label>
                 <div className='form-group'>
                   <input
                     type='password'
                     className='form-control'
                     name='confirmPassword'
-                    placeholder='Confirm Password'
+                    placeholder='Confirm your password'
                     onChange={this.confirmPasswordChangeHandler}
+                    color='#F7F7FF'
+                    style={{ backgroundColor: '#3A3A3B', color: '#F7F7FF', border: '0.5px solid #767676', borderRadius: '5px' }}
                   />
                 </div>
+
+                <label htmlFor='dob' className='signup-labels'>Date of Birth</label>
                 <div className='form-group'>
                   <input
                     type='date'
@@ -225,10 +243,11 @@ class Signup extends PureComponent {
                     name='dob'
                     placeholder='Date of Birth'
                     onChange={this.dobChangeHandler}
+                    style={{ backgroundColor: '#3A3A3B', color: '#F7F7FF', border: '0.5px solid #767676', borderRadius: '5px' }}
                   />
                 </div>
                 <div className='text-center pt-1 mb-5 pb-1'>
-                  <Button variant='danger' onClick={this.registerUser}>
+                  <Button onClick={this.registerUser} style={{ backgroundColor: '#A388C5', color: '#F7F7FF', borderRadius: '5px' }}>
                     Sign Me Up!
                   </Button>
                 </div>
