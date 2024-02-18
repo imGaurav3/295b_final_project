@@ -19,10 +19,11 @@ class Signup extends PureComponent {
     this.state = {
       username: '',
       useremail: '',
-      usercontact: '',
-      userweight: '',
-      userheight: '',
+      // usercontact: '',
+      // userweight: '',
+      // userheight: '',
       password: '',
+      confirmPassword: '',
       //redirect: "/"
     };
   }
@@ -42,25 +43,25 @@ class Signup extends PureComponent {
   };
 
   // contact change handler to update state variable with the text entered by the user
-  contactChangehandler = (e) => {
-    this.setState({
-      usercontact: e.target.value,
-    });
-  };
+  // contactChangehandler = (e) => {
+  //   this.setState({
+  //     usercontact: e.target.value,
+  //   });
+  // };
 
   // weight change handler to update state variable with the text entered by the user
-  weightChangehandler = (e) => {
-    this.setState({
-      userweight: e.target.value,
-    });
-  };
+  // weightChangehandler = (e) => {
+  //   this.setState({
+  //     userweight: e.target.value,
+  //   });
+  // };
 
   // height change handler to update state variable with the text entered by the user
-  heightChangehandler = (e) => {
-    this.setState({
-      userheight: e.target.value,
-    });
-  };
+  // heightChangehandler = (e) => {
+  //   this.setState({
+  //     userheight: e.target.value,
+  //   });
+  // };
 
   // password change handler to update state variable with the text entered by the user
   passwordChangeHandler = (e) => {
@@ -68,14 +69,22 @@ class Signup extends PureComponent {
       password: e.target.value,
     });
   };
-
+  confirmPasswordChangeHandler = (e) => {
+    this.setState({
+      confirmPassword: e.target.value,
+    });
+  };
   registerUser = () => {
+    if (this.state.password !== this.state.confirmPassword) {
+      alert('Passwords do not match.');
+      return; // Prevent the form from being submitted
+    }
     const data = {
       name: this.state.username,
       email: this.state.useremail,
-      contact: this.state.usercontact,
-      weight: this.state.userweight,
-      height: this.state.userheight,
+      // contact: this.state.usercontact,
+      // weight: this.state.userweight,
+      // height: this.state.userheight,
       password: this.state.password,
     };
     axios({
@@ -111,31 +120,32 @@ class Signup extends PureComponent {
     }
     return (
       <div className='signup-page' style={{ backgroundColor: '#272626' }}>
-        {redirectVar}      
-        <MDBContainer className="my-5 gradient-form">
+        {redirectVar}
+        <MDBContainer className='my-5 gradient-form'>
           <MDBRow>
-          <MDBCol col="6" className="mb-5">
-            <div className="d-flex flex-column  justify-content-center gradient-custom-2 h-100 mb-4">
-              <div className="text-white px-3 py-4 p-md-5 mx-md-4">
-                <h4 className="mb-4">
-                  Need to track your gym activities? We got it all
-                  covered!{" "}
-                </h4>
-                <p className="small mb-0">
-                  Register with us to start your fitness journey!!
-                </p>
-                <img src={pic} style={{ width: "485px" }} alt="logo" />
+            <MDBCol col='6' className='mb-5'>
+              <div className='d-flex flex-column  justify-content-center gradient-custom-2 h-100 mb-4'>
+                <div className='text-white px-3 py-4 p-md-5 mx-md-4'>
+                  <h4 className='mb-4'>
+                    Need to track your gym activities? We got it all covered!{' '}
+                  </h4>
+                  <p className='small mb-0'>
+                    Register with us to start your fitness journey!!
+                  </p>
+                  <img src={pic} style={{ width: '485px' }} alt='logo' />
+                </div>
               </div>
-            </div>
-          </MDBCol>
+            </MDBCol>
 
-          <MDBCol col="6" className="mb-5">
-            <div className="d-flex flex-column ms-5">
-              <div className="text-center">
-                <img src={logo} style={{ width: "185px" }} alt="logo" />
-                <h1 className="bookheading">Start your fitness journey with us</h1>
-              </div>
-              <br></br>
+            <MDBCol col='6' className='mb-5'>
+              <div className='d-flex flex-column ms-5'>
+                <div className='text-center'>
+                  <img src={logo} style={{ width: '185px' }} alt='logo' />
+                  <h1 className='bookheading'>
+                    Start your fitness journey with us
+                  </h1>
+                </div>
+                <br></br>
 
                 <div className='form-group'>
                   <input
@@ -155,7 +165,7 @@ class Signup extends PureComponent {
                     onChange={this.emailChangehandler}
                   />
                 </div>
-                <div className='form-group'>
+                {/* <div className='form-group'>
                   <input
                     type='text'
                     className='form-control'
@@ -181,7 +191,7 @@ class Signup extends PureComponent {
                     placeholder='height in cms'
                     onChange={this.heightChangehandler}
                   />
-                </div>
+                </div> */}
                 <div className='form-group'>
                   <input
                     type='password'
@@ -191,7 +201,15 @@ class Signup extends PureComponent {
                     onChange={this.passwordChangeHandler}
                   />
                 </div>
-
+                <div className='form-group'>
+                  <input
+                    type='password'
+                    className='form-control'
+                    name='confirmPassword'
+                    placeholder='Confirm Password'
+                    onChange={this.confirmPasswordChangeHandler}
+                  />
+                </div>
                 <div className='text-center pt-1 mb-5 pb-1'>
                   <Button variant='danger' onClick={this.registerUser}>
                     Sign Me Up!
@@ -208,10 +226,8 @@ class Signup extends PureComponent {
                 </div>
               </div>
             </MDBCol>
-
-          
-        </MDBRow>
-      </MDBContainer>
+          </MDBRow>
+        </MDBContainer>
       </div>
     );
   }
