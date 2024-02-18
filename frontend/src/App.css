@@ -1,5 +1,19 @@
+/* Resetting margins and paddings */
+html, body, #root, .App {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+  background-color: #272626; /* Assuming you want the entire app to have this background */
+}
+
 .App {
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh; /* This makes sure .App takes up at least the viewport height */
 }
 
 .App-logo {

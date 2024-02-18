@@ -148,7 +148,7 @@ class Signup extends PureComponent {
             <MDBCol col='6' className='mb-5'>
               <div className='d-flex flex-column ms-5'>
                 <div className='text-center'>
-                  <img src={logo} style={{ width: '185px' }} alt='logo' />
+                  {/* <img src={logo} style={{ width: '185px' }} alt='logo' /> */}
                   <h1 className='bookheading'>
                     Start your fitness journey with us
                   </h1>
