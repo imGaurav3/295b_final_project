@@ -1,5 +1,19 @@
+/* Resetting margins and paddings */
+html, body, #root, .App {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+  background-color: #272626; /* Assuming you want the entire app to have this background */
+}
+
 .App {
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh; /* This makes sure .App takes up at least the viewport height */
 }
 
 .App-logo {
@@ -59,6 +73,13 @@
   font-size: 14px;
   height: 50px;
   line-height: 50px;
+  color: #F7F7FF
+}
+
+input::placeholder {
+  color: F7F7FF;
+  /* font-size: 1.2em;
+  font-style: italic; */
 }
 
 .login-form .form-group {
@@ -109,6 +130,38 @@
 body {
   background-color: #9a616d;
 }
+
+.signup-page {
+  background-color: #272626;
+  font-family: "Hind", sans-serif;
+  font-weight: 500;
+  font-style: normal;;
+}
+
+.signup-form-left{
+  padding-right: 10px;
+  padding-top: 10px;
+}
+
+.bookheading {
+  /* padding-top: 20px; */
+  font-size: 30px;
+  color: rgb(221, 220, 218);
+}
+
+.signup-labels{
+  font-size: 17px;
+  font-weight: 400;
+  color: #ccc;
+}
+
+.signin-link{
+  font-size: 17px;
+  font-weight: 400;
+  color: #b196e4;
+}
+
+
 .background-radial-gradient {
   background-color: hsl(218, 41%, 15%);
   background-image: radial-gradient(
@@ -147,9 +200,7 @@ body {
   background: radial-gradient(#44006b, #ad1fff);
   overflow: hidden;
 }
-.bookheading {
-  color: rgb(167, 88, 31);
-}
+
 
 .gradient-custom-2 {
   /* fallback for old browsers */
@@ -169,7 +220,7 @@ body {
 }
 
 @media (min-width: 768px) {
-  .gradient-form {
+  .signup-form-left {
     height: 100vh !important;
   }
 }
