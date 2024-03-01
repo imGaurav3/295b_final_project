@@ -94,8 +94,8 @@ class Login extends PureComponent {
               />
             </div>
           </MDBCol>
-          <MDBCol col='6' className='mb-5'>
-            <form className='Auth-form'>
+          <MDBCol col='6' className='mb-5 Auth-form'>
+            {/* <form className='Auth-form'> */}
               <div className='Auth-form-content'>
                 <div className='text-center'>
                   <img src={logo} style={{ width: '185px' }} alt='logo' />
@@ -174,7 +174,7 @@ class Login extends PureComponent {
                   </p>
                 </div>
               </div>
-            </form>
+            {/* </form> */}
           </MDBCol>
         </MDBRow>
       </MDBContainer>

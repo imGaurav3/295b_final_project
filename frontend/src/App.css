@@ -133,6 +133,7 @@ body {
 
 .login-page{
   background-color: #272626;
+  display: flex;
   font-family: "Hind", sans-serif;
   font-weight: 500;
   font-style: normal;;
