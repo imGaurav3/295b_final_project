@@ -1,21 +1,23 @@
 /* eslint-disable */
-import React, { PureComponent } from "react";
-import { Redirect } from "react-router";
-import "bootstrap/dist/css/bootstrap.min.css";
-import "../../App.css";
-import Button from "react-bootstrap/Button";
-import axios from "axios";
-import url from "../../utils/urlconfig";
-import logo from "../../logo.jpg";
-import jwtDecode from "jwt-decode";
+import React, { PureComponent } from 'react';
+import { Redirect } from 'react-router';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import '../../App.css';
+import Button from 'react-bootstrap/Button';
+import axios from 'axios';
+import url from '../../utils/urlconfig';
+import logo from '../../logo.jpg';
+import jwtDecode from 'jwt-decode';
+import { MDBContainer, MDBRow, MDBCol } from 'mdb-react-ui-kit';
+import pic from '../../images/signup-page-img.png';
 
 class Login extends PureComponent {
   constructor(props) {
     super(props);
     this.state = {
-      email: "",
-      password: "",
-      redirect: "/login",
+      email: '',
+      password: '',
+      redirect: '/login',
     };
   }
 
@@ -40,12 +42,12 @@ class Login extends PureComponent {
     };
     axios({
       url: `${url}/login`,
-      method: "post",
+      method: 'post',
       data: data,
     })
       .then(async (response) => {
         await localStorage.setItem(
-          "currentUser",
+          'currentUser',
           JSON.stringify(response.data.jwt)
         );
         // await localStorage.setItem(
@@ -57,10 +59,10 @@ class Login extends PureComponent {
         //var isadmin = localStorage.getItem("admin");
         if (response.status === 200) {
           await this.setState({
-            redirect: "/userdashboard",
+            redirect: '/userdashboard',
           });
           // if (isadmin === "0") {
-            
+
           // } else if (isadmin === "1") {
           //   await this.setState({
           //     redirect: "/admindashboard",
@@ -68,7 +70,7 @@ class Login extends PureComponent {
           // }
         }
       })
-      .catch(function (error) {
+      .catch(function(error) {
         alert(error);
       });
   };
@@ -79,62 +81,76 @@ class Login extends PureComponent {
       redirectVar = <Redirect to={this.state.redirect} />;
     }
     return (
-      <div className="Auth-form-container login-page">
+      // <div className='Auth-form-container login-page'>
+      <MDBContainer className='Auth-form-container login-page'>
         {redirectVar}
-        <form className="Auth-form">
-          <div className="Auth-form-content">
-            <div className="text-center">
-              <img src={logo} style={{ width: "185px" }} alt="logo" />
-              <h3 className="bookheading">
-                <b>Sign In with your registered email!</b>
-              </h3>
-            </div>
-
-            <br></br>
-            <div className="form-group">
-              <input
-                type="email"
-                className="form-control"
-                name="email"
-                placeholder="user@example.com"
-                onChange={this.emailChangehandler}
+        <MDBRow>
+          <MDBCol col='6' className='mb-5'>
+            <div className='text-white px-3 py-4 p-md-5'>
+              <img
+                src={pic}
+                style={{ width: '485px', paddingRight: '20px' }}
+                alt='logo'
               />
             </div>
-            <br></br>
-            <div className="form-group">
-              <input
-                type="password"
-                className="form-control"
-                name="password"
-                placeholder="password"
-                onChange={this.passwordChangeHandler}
-              />
-            </div>
-            <div className="text-center pt-1 mb-5 pb-1">
-              <Button variant="danger" onClick={this.userlogin}>
-                Sign In
-              </Button>
-            </div>
+          </MDBCol>
+          <MDBCol col='6' className='mb-5'>
+            <form className='Auth-form'>
+              <div className='Auth-form-content'>
+                <div className='text-center'>
+                  <img src={logo} style={{ width: '185px' }} alt='logo' />
+                  <h3 className='bookheading'>
+                    <b>Sign In with your registered email!</b>
+                  </h3>
+                </div>
 
-            <div className="d-flex flex-row align-items-center justify-content-center pb-4 mb-4">
-              <p className="large fw-bold mt-2 pt-1 mb-2">
-                Dont have an account?{" "}
-                <a href="/signup" className="link-danger">
-                  <b>Create an account!</b>
-                </a>
-              </p>
-            </div>
-            <div className="d-flex flex-row align-items-center justify-content-center pb-4 mb-4">
-              <p className="large fw-bold mt-2 pt-1 mb-2">
-                Are you an APYY employee?{" "}
-                <a href="/adminlogin" className="link-danger">
-                  <b>Login Here!</b>
-                </a>
-              </p>
-            </div>
-          </div>
-        </form>
-      </div>
+                <br></br>
+                <div className='form-group'>
+                  <input
+                    type='email'
+                    className='form-control'
+                    name='email'
+                    placeholder='user@example.com'
+                    onChange={this.emailChangehandler}
+                  />
+                </div>
+                <br></br>
+                <div className='form-group'>
+                  <input
+                    type='password'
+                    className='form-control'
+                    name='password'
+                    placeholder='password'
+                    onChange={this.passwordChangeHandler}
+                  />
+                </div>
+                <div className='text-center pt-1 mb-5 pb-1'>
+                  <Button variant='danger' onClick={this.userlogin}>
+                    Sign In
+                  </Button>
+                </div>
+
+                <div className='d-flex flex-row align-items-center justify-content-center pb-4 mb-4'>
+                  <p className='large fw-bold mt-2 pt-1 mb-2'>
+                    Dont have an account?{' '}
+                    <a href='/signup' className='link-danger'>
+                      <b>Create an account!</b>
+                    </a>
+                  </p>
+                </div>
+                <div className='d-flex flex-row align-items-center justify-content-center pb-4 mb-4'>
+                  <p className='large fw-bold mt-2 pt-1 mb-2'>
+                    Are you an APYY employee?{' '}
+                    <a href='/adminlogin' className='link-danger'>
+                      <b>Login Here!</b>
+                    </a>
+                  </p>
+                </div>
+              </div>
+            </form>
+          </MDBCol>
+        </MDBRow>
+      </MDBContainer>
     );
   }
 }
