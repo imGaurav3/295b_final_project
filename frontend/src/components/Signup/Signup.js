@@ -158,7 +158,7 @@ class Signup extends PureComponent {
                     Sign up and give your mood the upgrade it deserves!
                   </h1>
                 </div>
-
+                <br></br>
                 <label htmlFor='username' className='signup-labels'>
                   Full Name
                 </label>

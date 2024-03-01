@@ -125,7 +125,6 @@ class Login extends PureComponent {
                   onChange={this.emailChangehandler}
                 />
               </div>
-              <br></br>
               <label htmlFor='password' className='signin-labels'>
                 Password
               </label>
@@ -145,7 +144,7 @@ class Login extends PureComponent {
                   onChange={this.passwordChangeHandler}
                 />
               </div>
-              <div className='text-center pt-1 mb-5 pb-1'>
+              <div className='text-center pt-1 mb-2 pb-1'>
                 <Button
                   onClick={this.userlogin}
                   style={{
@@ -159,7 +158,7 @@ class Login extends PureComponent {
               </div>
 
               <div className='d-flex flex-row align-items-center justify-content-center pb-4 mb-4'>
-                <p className='signin-labels large fw-bold mt-2 pt-1 mb-2'>
+                <p className='signin-labels large fw-bold pt-1 mb-2'>
                   Dont have an account?{' '}
                   <a href='/signup' className='link-danger signin-link'>
                     <b>Create an account!</b>
