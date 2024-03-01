@@ -131,11 +131,18 @@ body {
   background-color: #9a616d;
 }
 
-.signup-page {
+.login-page{
   background-color: #272626;
   font-family: "Hind", sans-serif;
   font-weight: 500;
   font-style: normal;;
+}
+
+.signup-page {
+  background-color: #272626;
+  font-family: "Hind", sans-serif;
+  font-weight: 500;
+  font-style: normal;
 }
 
 .signup-form-left{

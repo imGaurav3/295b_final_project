@@ -79,7 +79,7 @@ class Login extends PureComponent {
       redirectVar = <Redirect to={this.state.redirect} />;
     }
     return (
-      <div className="Auth-form-container gradient-custom-2">
+      <div className="Auth-form-container login-page">
         {redirectVar}
         <form className="Auth-form">
           <div className="Auth-form-content">
