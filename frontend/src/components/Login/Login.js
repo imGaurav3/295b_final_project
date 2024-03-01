@@ -96,84 +96,84 @@ class Login extends PureComponent {
           </MDBCol>
           <MDBCol col='6' className='mb-5 Auth-form'>
             {/* <form className='Auth-form'> */}
-              <div className='Auth-form-content'>
-                <div className='text-center'>
-                  <img src={logo} style={{ width: '185px' }} alt='logo' />
-                  <h3 className='bookheading'>
-                    <b>Sign In with your registered email!</b>
-                  </h3>
-                </div>
+            <div className='Auth-form-content'>
+              <div className='text-center'>
+                <img src={logo} style={{ width: '185px' }} alt='logo' />
+                <h3 className='bookheading'>
+                  <b>Sign In with your registered email!</b>
+                </h3>
+              </div>
 
-                <br></br>
-                <label htmlFor='useremail' className='signin-labels'>
-                  Email
-                </label>
-                <div className='form-group'>
-                  <input
-                    type='email'
-                    className='form-control'
-                    name='email'
-                    placeholder='user@example.com'
-                    color='#F7F7FF'
-                    style={{
-                      backgroundColor: '#3A3A3B',
-                      color: '#F7F7FF',
-                      border: '0.5px solid #767676',
-                      borderRadius: '5px',
-                    }}
-                    onChange={this.emailChangehandler}
-                  />
-                </div>
-                <br></br>
-                <label htmlFor='password' className='signin-labels'>
-                  Password
-                </label>
-                <div className='form-group'>
-                  <input
-                    type='password'
-                    className='form-control'
-                    name='password'
-                    placeholder='password'
-                    color='#F7F7FF'
-                    style={{
-                      backgroundColor: '#3A3A3B',
-                      color: '#F7F7FF',
-                      border: '0.5px solid #767676',
-                      borderRadius: '5px',
-                    }}
-                    onChange={this.passwordChangeHandler}
-                  />
-                </div>
-                <div className='text-center pt-1 mb-5 pb-1'>
-                  <Button
-                    onClick={this.userlogin}
-                    style={{
-                      backgroundColor: '#A388C5',
-                      color: '#F7F7FF',
-                      borderRadius: '5px',
-                    }}
-                  >
-                    Sign In
-                  </Button>
-                </div>
+              <br></br>
+              <label htmlFor='useremail' className='signin-labels'>
+                Email
+              </label>
+              <div className='form-group'>
+                <input
+                  type='email'
+                  className='form-control'
+                  name='email'
+                  placeholder='user@example.com'
+                  color='#F7F7FF'
+                  style={{
+                    backgroundColor: '#3A3A3B',
+                    color: '#F7F7FF',
+                    border: '0.5px solid #767676',
+                    borderRadius: '5px',
+                  }}
+                  onChange={this.emailChangehandler}
+                />
+              </div>
+              <br></br>
+              <label htmlFor='password' className='signin-labels'>
+                Password
+              </label>
+              <div className='form-group'>
+                <input
+                  type='password'
+                  className='form-control'
+                  name='password'
+                  placeholder='password'
+                  color='#F7F7FF'
+                  style={{
+                    backgroundColor: '#3A3A3B',
+                    color: '#F7F7FF',
+                    border: '0.5px solid #767676',
+                    borderRadius: '5px',
+                  }}
+                  onChange={this.passwordChangeHandler}
+                />
+              </div>
+              <div className='text-center pt-1 mb-5 pb-1'>
+                <Button
+                  onClick={this.userlogin}
+                  style={{
+                    backgroundColor: '#A388C5',
+                    color: '#F7F7FF',
+                    borderRadius: '5px',
+                  }}
+                >
+                  Sign In
+                </Button>
+              </div>
 
-                <div className='d-flex flex-row align-items-center justify-content-center pb-4 mb-4'>
-                  <p className='large fw-bold mt-2 pt-1 mb-2'>
-                    Dont have an account?{' '}
-                    <a href='/signup' className='link-danger'>
-                      <b>Create an account!</b>
-                    </a>
-                  </p>
-                </div>
-                <div className='d-flex flex-row align-items-center justify-content-center pb-4 mb-4'>
+              <div className='d-flex flex-row align-items-center justify-content-center pb-4 mb-4'>
+                <p className='signin-labels large fw-bold mt-2 pt-1 mb-2'>
+                  Dont have an account?{' '}
+                  <a href='/signup' className='link-danger signin-link'>
+                    <b>Create an account!</b>
+                  </a>
+                </p>
+              </div>
+              {/* <div className='d-flex flex-row align-items-center justify-content-center pb-4 mb-4'>
                   <p className='large fw-bold mt-2 pt-1 mb-2'>
                     Are you an APYY employee?{' '}
                     <a href='/adminlogin' className='link-danger'>
                       <b>Login Here!</b>
                     </a>
                   </p>
-                </div>
-              </div>
+                </div> */}
+            </div>
             {/* </form> */}
           </MDBCol>
         </MDBRow>
