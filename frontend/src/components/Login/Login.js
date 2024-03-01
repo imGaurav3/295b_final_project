@@ -105,27 +105,54 @@ class Login extends PureComponent {
                 </div>
 
                 <br></br>
+                <label htmlFor='useremail' className='signin-labels'>
+                  Email
+                </label>
                 <div className='form-group'>
                   <input
                     type='email'
                     className='form-control'
                     name='email'
                     placeholder='user@example.com'
+                    color='#F7F7FF'
+                    style={{
+                      backgroundColor: '#3A3A3B',
+                      color: '#F7F7FF',
+                      border: '0.5px solid #767676',
+                      borderRadius: '5px',
+                    }}
                     onChange={this.emailChangehandler}
                   />
                 </div>
                 <br></br>
+                <label htmlFor='password' className='signin-labels'>
+                  Password
+                </label>
                 <div className='form-group'>
                   <input
                     type='password'
                     className='form-control'
                     name='password'
                     placeholder='password'
+                    color='#F7F7FF'
+                    style={{
+                      backgroundColor: '#3A3A3B',
+                      color: '#F7F7FF',
+                      border: '0.5px solid #767676',
+                      borderRadius: '5px',
+                    }}
                     onChange={this.passwordChangeHandler}
                   />
                 </div>
                 <div className='text-center pt-1 mb-5 pb-1'>
-                  <Button variant='danger' onClick={this.userlogin}>
+                  <Button
+                    onClick={this.userlogin}
+                    style={{
+                      backgroundColor: '#A388C5',
+                      color: '#F7F7FF',
+                      borderRadius: '5px',
+                    }}
+                  >
                     Sign In
                   </Button>
                 </div>
