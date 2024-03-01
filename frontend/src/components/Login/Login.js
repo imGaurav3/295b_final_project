@@ -98,7 +98,7 @@ class Login extends PureComponent {
             {/* <form className='Auth-form'> */}
               <div className='Auth-form-content'>
                 <div className='text-center'>
-                  <img src={logo} style={{ width: '185px' }} alt='logo' />
+                  {/* <img src={logo} style={{ width: '185px' }} alt='logo' /> */}
                   <h3 className='bookheading'>
                     <b>Sign In with your registered email!</b>
                   </h3>
