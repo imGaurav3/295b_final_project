@@ -85,7 +85,8 @@ class Login extends PureComponent {
       <MDBContainer className='Auth-form-container login-page'>
         {redirectVar}
         <MDBRow>
-          <MDBCol col='6' className='mb-5'>
+          <br></br>
+          <MDBCol col='6' className='mb-5 my-5 login-form-right'>
             <div className='text-white px-3 py-4 p-md-5'>
               <img
                 src={pic}
@@ -94,14 +95,14 @@ class Login extends PureComponent {
               />
             </div>
           </MDBCol>
-          <MDBCol col='6' className='mb-5 Auth-form'>
+          <MDBCol col='6' className='mb-5 my-5 login-form-right'>
             {/* <form className='Auth-form'> */}
-            <div className='Auth-form-content'>
+            {/* <div className='Auth-form-content'> */}
               <div className='text-center'>
                 {/* <img src={logo} style={{ width: '185px' }} alt='logo' /> */}
-                <h3 className='bookheading'>
-                  <b>Sign In with your registered email!</b>
-                </h3>
+                <h1 className='bookheading'>
+                  Sign in to elevate your day with tailored entertainment!
+                </h1>
               </div>
 
               <br></br>
@@ -173,7 +174,7 @@ class Login extends PureComponent {
                     </a>
                   </p>
                 </div> */}
-            </div>
+            {/* </div> */}
             {/* </form> */}
           </MDBCol>
         </MDBRow>
