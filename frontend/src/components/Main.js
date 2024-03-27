@@ -12,16 +12,20 @@ import MyActivities from './MyActivities/MyActivities';
 import BookClass from './BookClass/BookClass';
 import MusicRecommendation from './Music/MusicRecommendation';
 import MovieRecommendation from './Movie/MovieRecommendation';
+import SignInQuestionnaire from "./SignInQuestionnaire/SignInQuestionnaire";
+
 class Main extends PureComponent {
   render() {
     return (
       <div>
+        {/* <SignInQuestionnaire/> */}
         <Switch>
           {/* Render Different Component based on Route */}
           <Route exact path='/' component={Users} />
           <Route exact path='/login' component={Login} />
           <Route exact path='/adminlogin' component={Adminlogin} />
           <Route exact path='/signup' component={Signup} />
+          <Route exact path="/signinquestions" component={SignInQuestionnaire} />
           <Route
             exact
             path='/admin/dashboard'

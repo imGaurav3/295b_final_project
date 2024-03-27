@@ -188,6 +188,45 @@ body {
   color: #b196e4;
 }
 
+.regular-text{
+  font-size: 15px;
+  font-weight: 400;
+  color: #ccc;
+}
+
+.signin-questions-page {
+  background-color: #272626;
+  font-family: "Hind", sans-serif;
+  display: flex;
+  justify-content: center; /* Horizontally center */
+  align-items: center; /* Vertically center */
+  /* height: 100vh; Ensure the form is vertically centered on the page */
+}
+
+.signin-ques-page{
+  display: flex;
+  flex-direction: column; /* Child components will stack vertically */
+  justify-content: center; /* Horizontally center */
+  align-items: center; /* Vertically center */
+}
+
+.signin-ques-form{
+  margin-top: 20px;
+  width: 60%; /* Set width to 75% */
+  /* margin: 20 auto; Center horizontally within parent container */
+  display: flex;
+  flex-direction: column; /* Child components will stack vertically */
+  /* align-items: center; */
+  text-align: left;
+}
+
+.questionnaire-labels{
+  font-family: "Hind", sans-serif;
+  font-size: 18px;
+  font-weight: 450;
+  color: #ccc;
+  justify-content: left;
+}
 
 .background-radial-gradient {
   background-color: hsl(218, 41%, 15%);
