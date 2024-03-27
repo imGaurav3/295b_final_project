@@ -59,7 +59,7 @@ class Login extends PureComponent {
         //var isadmin = localStorage.getItem("admin");
         if (response.status === 200) {
           await this.setState({
-            redirect: '/userdashboard',
+            redirect: '/signinquestions',
           });
           // if (isadmin === "0") {
 
@@ -144,14 +144,15 @@ class Login extends PureComponent {
                   onChange={this.passwordChangeHandler}
                 />
               </div>
-              <div className='text-center pt-1 mb-2 pb-1'>
+              <div href='/signinquestions' className='text-center pt-1 mb-2 pb-1'>
                 <Button
-                  onClick={this.userlogin}
+                  // onClick={this.userlogin}
                   style={{
                     backgroundColor: '#A388C5',
                     color: '#F7F7FF',
                     borderRadius: '5px',
                   }}
+                  href='/signinquestions'
                 >
                   Sign In
                 </Button>
