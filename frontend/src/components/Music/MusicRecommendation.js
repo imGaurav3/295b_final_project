@@ -43,129 +43,64 @@ class MusicRecommendation extends PureComponent {
               <h1 className='bookheading'>Music Recommendation</h1>
             </div>
             <MDBRow>
-              <div style={{ padding: '15px' }}>
-                <Card sx={{ width: 200 }}>
-                  <CardActionArea>
-                    <CardMedia
-                      component='img'
-                      height='200'
-                      image='https://picsum.photos/200'
-                      alt='Image'
-                    />
-                    <CardContent>
-                      <Typography gutterBottom variant='h5' component='div'>
-                        Title - Artist
-                      </Typography>
-                      <Typography variant='body2' color='text.secondary'>
-                        Genre:
-                      </Typography>
-                    </CardContent>
-                  </CardActionArea>
-                </Card>
-              </div>
-              <div style={{ padding: '15px' }}>
-                <Card sx={{ width: 200 }}>
-                  <CardActionArea>
-                    <CardMedia
-                      component='img'
-                      height='200'
-                      image='https://picsum.photos/200'
-                      alt='Image'
-                    />
-                    <CardContent>
-                      <Typography gutterBottom variant='h5' component='div'>
-                        Title - Artist
-                      </Typography>
-                      <Typography variant='body2' color='text.secondary'>
-                        Genre:
-                      </Typography>
-                    </CardContent>
-                  </CardActionArea>
-                </Card>
-              </div>
-              <div style={{ padding: '15px' }}>
-                <Card sx={{ width: 200 }}>
-                  <CardActionArea>
-                    <CardMedia
-                      component='img'
-                      height='200'
-                      image='https://picsum.photos/200'
-                      alt='Image'
-                    />
-                    <CardContent>
-                      <Typography gutterBottom variant='h5' component='div'>
-                        Title - Artist
-                      </Typography>
-                      <Typography variant='body2' color='text.secondary'>
-                        Genre:
-                      </Typography>
-                    </CardContent>
-                  </CardActionArea>
-                </Card>
-              </div>
-              <div style={{ padding: '15px' }}>
-                <Card sx={{ width: 200 }}>
-                  <CardActionArea>
-                    <CardMedia
-                      component='img'
-                      height='200'
-                      image='https://picsum.photos/200'
-                      alt='Image'
-                    />
-                    <CardContent>
-                      <Typography gutterBottom variant='h5' component='div'>
-                        Title - Artist
-                      </Typography>
-                      <Typography variant='body2' color='text.secondary'>
-                        Genre:
-                      </Typography>
-                    </CardContent>
-                  </CardActionArea>
-                </Card>
+              <div
+                style={{
+                  padding: '15px',
+                  textAlign: 'center',
+                  width: '60vw',
+                  margin: 'auto',
+                }}
+              >
+                <iframe
+                  src='https://open.spotify.com/embed/track/7qiZfU4dY1lWllzX7mPBI3?utm_source=oembed'
+                  style={{ width: '100%', height: '25vh' }} // Setting width to 100% of the parent div, and height directly
+                  frameBorder='0'
+                  allowFullScreen=''
+                  allow='autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture'
+                  loading='lazy'
+                ></iframe>
               </div>
             </MDBRow>
             <MDBRow>
-              <div style={{ padding: '15px' }}>
-                <Card sx={{ width: 200 }}>
-                  <CardActionArea>
-                    <CardMedia
-                      component='img'
-                      height='200'
-                      image='https://picsum.photos/200'
-                      alt='Image'
-                    />
-                    <CardContent>
-                      <Typography gutterBottom variant='h5' component='div'>
-                        Title - Artist
-                      </Typography>
-                      <Typography variant='body2' color='text.secondary'>
-                        Genre:
-                      </Typography>
-                    </CardContent>
-                  </CardActionArea>
-                </Card>
-              </div>
-              <div style={{ padding: '15px' }}>
-                <Card sx={{ width: 200 }}>
-                  <CardActionArea>
-                    <CardMedia
-                      component='img'
-                      height='200'
-                      image='https://picsum.photos/200'
-                      alt='Image'
-                    />
-                    <CardContent>
-                      <Typography gutterBottom variant='h5' component='div'>
-                        Title - Artist
-                      </Typography>
-                      <Typography variant='body2' color='text.secondary'>
-                        Genre:
-                      </Typography>
-                    </CardContent>
-                  </CardActionArea>
-                </Card>
+              <div
+                style={{
+                  padding: '15px',
+                  textAlign: 'center',
+                  width: '60vw',
+                  margin: 'auto',
+                }}
+              >
+                <iframe
+                  src='https://open.spotify.com/embed/track/7qiZfU4dY1lWllzX7mPBI3?utm_source=oembed'
+                  style={{ width: '100%', height: '25vh' }} // Setting width to 100% of the parent div, and height directly
+                  frameBorder='0'
+                  allowFullScreen=''
+                  allow='autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture'
+                  loading='lazy'
+                ></iframe>
               </div>
             </MDBRow>
+
+            <MDBRow>
+              <div
+                style={{
+                  padding: '15px',
+                  textAlign: 'center',
+                  width: '60vw',
+                  margin: 'auto',
+                }}
+              >
+                <iframe
+                  src='https://open.spotify.com/embed/track/7qiZfU4dY1lWllzX7mPBI3?utm_source=oembed'
+                  style={{ width: '100%', height: '25vh' }} // Setting width to 100% of the parent div, and height directly
+                  frameBorder='0'
+                  allowFullScreen=''
+                  allow='autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture'
+                  loading='lazy'
+                ></iframe>
+              </div>
+            </MDBRow>
+
             <br></br>
           </MDBCol>
         </MDBRow>
