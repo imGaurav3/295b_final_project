@@ -45,15 +45,15 @@ class MusicRecommendation extends PureComponent {
             <MDBRow>
               <div
                 style={{
-                  padding: '15px',
+                  padding: '5px',
                   textAlign: 'center',
-                  width: '60vw',
+                  width: '50vw',
                   margin: 'auto',
                 }}
               >
                 <iframe
                   src='https://open.spotify.com/embed/track/7qiZfU4dY1lWllzX7mPBI3?utm_source=oembed'
-                  style={{ width: '100%', height: '25vh' }} // Setting width to 100% of the parent div, and height directly
+                  style={{ width: '100%', height: '20vh' }} // Setting width to 100% of the parent div, and height directly
                   frameBorder='0'
                   allowFullScreen=''
                   allow='autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture'
@@ -64,15 +64,15 @@ class MusicRecommendation extends PureComponent {
             <MDBRow>
               <div
                 style={{
-                  padding: '15px',
+                  padding: '5px',
                   textAlign: 'center',
-                  width: '60vw',
+                  width: '50vw',
                   margin: 'auto',
                 }}
               >
                 <iframe
-                  src='https://open.spotify.com/embed/track/7qiZfU4dY1lWllzX7mPBI3?utm_source=oembed'
-                  style={{ width: '100%', height: '25vh' }} // Setting width to 100% of the parent div, and height directly
+                  src='https://open.spotify.com/embed/track/5mjYQaktjmjcMKcUIcqz4s?utm_source=oembed'
+                  style={{ width: '100%', height: '20vh' }} // Setting width to 100% of the parent div, and height directly
                   frameBorder='0'
                   allowFullScreen=''
                   allow='autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture'
@@ -84,15 +84,15 @@ class MusicRecommendation extends PureComponent {
             <MDBRow>
               <div
                 style={{
-                  padding: '15px',
+                  padding: '5px',
                   textAlign: 'center',
-                  width: '60vw',
+                  width: '50vw',
                   margin: 'auto',
                 }}
               >
                 <iframe
-                  src='https://open.spotify.com/embed/track/7qiZfU4dY1lWllzX7mPBI3?utm_source=oembed'
-                  style={{ width: '100%', height: '25vh' }} // Setting width to 100% of the parent div, and height directly
+                  src='https://open.spotify.com/embed/track/5aIVCx5tnk0ntmdiinnYvw?utm_source=oembed'
+                  style={{ width: '100%', height: '20vh' }} // Setting width to 100% of the parent div, and height directly
                   frameBorder='0'
                   allowFullScreen=''
                   allow='autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture'
@@ -101,6 +101,82 @@ class MusicRecommendation extends PureComponent {
               </div>
             </MDBRow>
 
+            <MDBRow>
+              <div
+                style={{
+                  padding: '5px',
+                  textAlign: 'center',
+                  width: '50vw',
+                  margin: 'auto',
+                }}
+              >
+                <iframe
+                  src='https://open.spotify.com/embed/track/0LMwmV37RCmBO2so0szAFs?utm_source=oembed'
+                  style={{ width: '100%', height: '20vh' }} // Setting width to 100% of the parent div, and height directly
+                  frameBorder='0'
+                  allowFullScreen=''
+                  allow='autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture'
+                  loading='lazy'
+                ></iframe>
+              </div>
+            </MDBRow>
+            <MDBRow>
+              <div
+                style={{
+                  padding: '5px',
+                  textAlign: 'center',
+                  width: '50vw',
+                  margin: 'auto',
+                }}
+              >
+                <iframe
+                  src='https://open.spotify.com/embed/track/3Pbp7cUCx4d3OAkZSCoNvn?utm_source=oembed'
+                  style={{ width: '100%', height: '20vh' }} // Setting width to 100% of the parent div, and height directly
+                  frameBorder='0'
+                  allowFullScreen=''
+                  allow='autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture'
+                  loading='lazy'
+                ></iframe>
+              </div>
+            </MDBRow>
+            <MDBRow>
+              <div
+                style={{
+                  padding: '5px',
+                  textAlign: 'center',
+                  width: '50vw',
+                  margin: 'auto',
+                }}
+              >
+                <iframe
+                  src='https://open.spotify.com/embed/track/22dUzMFttcR3uU17NcOAIv?utm_source=oembed'
+                  style={{ width: '100%', height: '20vh' }} // Setting width to 100% of the parent div, and height directly
+                  frameBorder='0'
+                  allowFullScreen=''
+                  allow='autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture'
+                  loading='lazy'
+                ></iframe>
+              </div>
+            </MDBRow>
+            <MDBRow>
+              <div
+                style={{
+                  padding: '5px',
+                  textAlign: 'center',
+                  width: '50vw',
+                  margin: 'auto',
+                }}
+              >
+                <iframe
+                  src='https://open.spotify.com/embed/track/48vIfHaK7by6x0T6ucpODL?utm_source=oembed'
+                  style={{ width: '100%', height: '20vh' }} // Setting width to 100% of the parent div, and height directly
+                  frameBorder='0'
+                  allowFullScreen=''
+                  allow='autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture'
+                  loading='lazy'
+                ></iframe>
+              </div>
+            </MDBRow>
             <br></br>
           </MDBCol>
         </MDBRow>
