@@ -52,7 +52,7 @@ const PageOne = () => {
     <div className='signup-questions-page' style={{display: 'flex', flexDirection: 'column', width: '100%'}}>
       <Navbar/>
 
-      <MDBContainer className='signup-form-left' display="flex" style={{paddingTop: '20px'}}>
+      <MDBContainer className='signup-form-left' display="flex" style={{paddingTop: '20px', zIndex: '1'}}>
 
         <MDBRow>
            
@@ -168,14 +168,15 @@ const PageOne = () => {
             
         </MDBRow>
 
-        {/* Absolute positioned images */}
-        <div style={{ position: 'absolute', bottom: 10, left: 20 }}>
-            <img src={movieImg} alt="Right Side Image" style={{ width: '20%', height: 'auto' }} />
-        </div>
-        <div style={{ position: 'absolute', bottom: 15, right: 25 }}>
-        <img src={popcornImg} alt="Left Side Image" style={{ width: 'auto', height: '300px' }} />
-        </div>
       </MDBContainer>
+
+        {/* Absolute positioned images */}
+        <div style={{ position: 'absolute', bottom: 10, left: 20, zIndex: '0' }}>
+            <img src={movieImg} alt="Left Side Image" style={{ width: '20%', height: 'auto' }} />
+        </div>
+        <div style={{ position: 'absolute', bottom: 15, right: 25, zIndex: '0'  }}>
+        <img src={popcornImg} alt="Right Side Image" style={{ width: 'auto', height: '300px' }} />
+        </div>
     </div>
   );
 }
