@@ -90,7 +90,7 @@ const SignInQuestionnaire = () => {
   return (
     <div className='signin-questions-page'>
       {redirect && <Redirect to={redirect} />}
-      <MDBContainer className='my-5 signup-form-left'>
+      <MDBContainer className='signup-form-left'>
         <MDBRow>
           <MDBCol col='6' className='mb-5'>
             <div className="signin-ques-page">
@@ -101,8 +101,9 @@ const SignInQuestionnaire = () => {
                 Welcome! Let's fine-tune your entertainment choices.
               </div>
               <div className='regular-text text-center'>
-                Share your mood and interests, and we'll do the rest.
+                Share your current mood and interests, and we'll do the rest.
               </div>
+              <br></br>
               <div className='signin-ques-form'>
                 <div className='questionnaire-labels' style={{ paddingBottom: '5px' }}>
                   How are you feeling today?
@@ -162,7 +163,7 @@ const SignInQuestionnaire = () => {
                   </div>
                 </div>
 
-                <br style={{ paddingBottom: '5px' }}></br>
+                <br style={{ paddingBottom: '7px' }}></br>
 
 
                 <div className='questionnaire-labels' style={{ paddingBottom: '5px' }}>
@@ -204,7 +205,7 @@ const SignInQuestionnaire = () => {
                   </SegmentedControl>
                 </div>
 
-                <br style={{paddingBottom:'5px'}}></br>
+                <br style={{paddingBottom:'7px'}}></br>
 
                 <div className='questionnaire-labels' style={{ paddingBottom: '8px' }}>
                   Who are you with?
@@ -250,7 +251,7 @@ const SignInQuestionnaire = () => {
                   </Stack>
                 </div>
 
-                <br style={{paddingBottom:'5px'}}></br>
+                <br style={{paddingBottom:'7px'}}></br>
 
                 <div className='questionnaire-labels' style={{ paddingBottom: '8px' }}>
                   Are you in the mood for a new release or a classic?
