@@ -1,5 +1,9 @@
 {
   "dependencies": {
+    "@material/web": "^1.4.0",
     "chart.js": "^4.2.1"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0"
   }
 }
