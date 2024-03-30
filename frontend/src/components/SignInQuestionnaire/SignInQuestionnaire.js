@@ -28,6 +28,9 @@ import sadPurpleIcon from '../../images/sad_purple.png';
 import neutralWhiteIcon from '../../images/neutral_white.png';
 import neutralPurpleIcon from '../../images/neutral_purple.png';
 
+import horrorImg from '../../images/Horror-movie-bro.png';
+import musicImg from '../../images/Music-bro.png';
+
 const BootstrapInput = styled(InputBase)(({ theme }) => ({
   'label + &': {
     marginTop: theme.spacing(1),
@@ -93,7 +96,7 @@ const SignInQuestionnaire = () => {
       <MDBContainer className='signup-form-left'>
         <MDBRow>
           <MDBCol col='6' className='mb-5'>
-            <div className="signin-ques-page">
+            <div className="signin-ques-page" style={{paddingLeft: '40px'}}>
               <h1 className='bookheading text-center' style={{ fontWeight: 'bold' }}>
                 Discover Your Perfect Picks!
               </h1>
@@ -220,7 +223,8 @@ const SignInQuestionnaire = () => {
                         fontWeight: selectedChip === 'Alone' ? 'bold' : 'normal'
                       }} 
                       label="Alone" 
-                      variant="outlined"/>
+                      // variant="outlined"
+                    />
                     <Chip 
                       onClick={() => handleChipClick('With Friends')} 
                       style={{ 
@@ -229,7 +233,8 @@ const SignInQuestionnaire = () => {
                         fontWeight: selectedChip === 'With Friends' ? 'bold' : 'normal'
                       }} 
                       label="With Friends" 
-                      variant="outlined" />
+                      // variant="outlined" 
+                    />
                     <Chip 
                       onClick={() => handleChipClick('With Family')}
                       style={{ 
@@ -238,7 +243,8 @@ const SignInQuestionnaire = () => {
                         fontWeight: selectedChip === 'With Family' ? 'bold' : 'normal'
                       }} 
                       label="With Family" 
-                      variant="outlined"/>
+                      // variant="outlined"
+                    />
                     <Chip 
                       onClick={() => handleChipClick('With A Partner')}
                       style={{
@@ -247,7 +253,8 @@ const SignInQuestionnaire = () => {
                         fontWeight: selectedChip === 'With A Partner' ? 'bold' : 'normal'
                       }}
                       label="With A Partner" 
-                      variant="outlined" />
+                      // variant="outlined" 
+                    />
                   </Stack>
                 </div>
 
@@ -266,7 +273,8 @@ const SignInQuestionnaire = () => {
                         fontWeight: selectedChipTime === 'Classics (< 1990)' ? 'bold' : 'normal'
                       }} 
                       label="Classics (< 1990)" 
-                      variant="outlined"/>
+                      // variant="outlined"
+                      />
                     <Chip 
                       onClick={() => handleTimeChipClick('New Releases (> 1990)')} 
                       style={{ 
@@ -275,7 +283,8 @@ const SignInQuestionnaire = () => {
                         fontWeight: selectedChipTime === 'New Releases (> 1990)' ? 'bold' : 'normal'
                       }} 
                       label="New Releases (> 1990)" 
-                      variant="outlined" />
+                      // variant="outlined" 
+                    />
                     <Chip 
                       onClick={() => handleTimeChipClick('Anything works!')}
                       style={{ 
@@ -284,7 +293,8 @@ const SignInQuestionnaire = () => {
                         fontWeight: selectedChipTime === 'Anything works!' ? 'bold' : 'normal'
                       }} 
                       label="Anything works!" 
-                      variant="outlined"/>
+                      // variant="outlined"
+                    />
                   </Stack>
                 </div>
 
@@ -294,6 +304,26 @@ const SignInQuestionnaire = () => {
             </div>
           </MDBCol>
         </MDBRow>
+
+        {/* Absolute positioned images */}
+        {/* <div style={{ position: 'absolute', bottom: 0, left: 20 }}>
+            <img src={horrorImg} alt="Right Side Image" style={{ width: '20%', height: 'auto' }} />
+        </div>
+        <div style={{ position: 'absolute', bottom: 15, right: 25 }}>
+        <img src={happyImg} alt="Left Side Image" style={{ width: 'auto', height: '375px' }} />
+        </div> */}
+
+        {selectedOption === 'Movies' && (
+          <div style={{ position: 'absolute', bottom: 10, left: 20 }}>
+            <img src={horrorImg} alt="Right Side Image" style={{ width: '20%', height: 'auto' }} />
+          </div>
+        )}
+        {selectedOption === 'Music' && (
+          <div style={{ position: 'absolute', bottom: 0, right: 25 }}>
+            <img src={musicImg} alt="Left Side Image" style={{ width: 'auto', height: '375px' }} />
+          </div>
+        )}
+
       </MDBContainer>
     </div>
   );
