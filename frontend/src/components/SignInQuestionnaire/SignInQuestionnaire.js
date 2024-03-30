@@ -20,6 +20,7 @@ import { MenuList } from '@mui/material';
 import {SegmentedControl} from '@primer/react'
 import Chip from '@mui/material/Chip';
 import Stack from '@mui/material/Stack';
+import Navbar from "../Common/Navbar";
 
 import happyWhiteIcon from '../../images/happiness_white.png';
 import happyPurpleIcon from '../../images/happiness_purple.png';
@@ -91,11 +92,12 @@ const SignInQuestionnaire = () => {
   };
 
   return (
-    <div className='signin-questions-page'>
+    <div className='signin-questions-page' style={{display: 'flex', flexDirection: 'column', width: '100%'}}>
+      <Navbar/>
       {redirect && <Redirect to={redirect} />}
       <MDBContainer className='signup-form-left'>
         <MDBRow>
-          <MDBCol col='6' className='mb-5'>
+          <MDBCol col='6' className=''>
             <div className="signin-ques-page" style={{paddingLeft: '40px'}}>
               <h1 className='bookheading text-center' style={{ fontWeight: 'bold' }}>
                 Discover Your Perfect Picks!

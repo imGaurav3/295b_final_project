@@ -1,96 +1,166 @@
-/* eslint-disable */
-import * as React from "react";
-import AppBar from "@mui/material/AppBar";
-import Box from "@mui/material/Box";
-import Toolbar from "@mui/material/Toolbar";
-import Typography from "@mui/material/Typography";
-import IconButton from "@mui/material/IconButton";
-import AccountCircle from "@mui/icons-material/AccountCircle";
-import LoginIcon from "@mui/icons-material/Login";
-import LogoutIcon from "@mui/icons-material/Logout";
-import ListItemIcon from "@mui/material/ListItemIcon";
-import MenuItem from "@mui/material/MenuItem";
-import Menu from "@mui/material/Menu";
-import { Link } from "react-router-dom";
-import CssBaseline from "@material-ui/core/CssBaseline";
-import { ListItemText } from "@mui/material";
-import logo from "../../images/logo.jpg";
-//import logo from "../../logo.jpg";
+import * as React from 'react';
+import AppBar from '@mui/material/AppBar';
+import Box from '@mui/material/Box';
+import Toolbar from '@mui/material/Toolbar';
+import IconButton from '@mui/material/IconButton';
+import Typography from '@mui/material/Typography';
+import Menu from '@mui/material/Menu';
+import MenuIcon from '@mui/icons-material/Menu';
+import Container from '@mui/material/Container';
+import Avatar from '@mui/material/Avatar';
+import Button from '@mui/material/Button';
+import Tooltip from '@mui/material/Tooltip';
+import MenuItem from '@mui/material/MenuItem';
+import AdbIcon from '@mui/icons-material/Adb';
+import moodifyIcon from '../../images/moodify_icon.png';
 
-export default function Navbar() {
-  const [anchorEl, setAnchorEl] = React.useState(null);
-  const login = localStorage.getItem("loggedIn");
+const pages = ['Dashboard', 'Logout'];
+const settings = ['Change Favorite Movies', ];
 
-  //let history = useNavigate();
-  const useLogout = (e) => {
-    e.preventDefault();
-    localStorage.clear();
+function Navbar() {
+  const [anchorElNav, setAnchorElNav] = React.useState(null);
+  const [anchorElUser, setAnchorElUser] = React.useState(null);
+
+  const handleOpenNavMenu = (event) => {
+    setAnchorElNav(event.currentTarget);
+  };
+  const handleOpenUserMenu = (event) => {
+    setAnchorElUser(event.currentTarget);
   };
 
-  const handleMenu = (event) => {
-    setAnchorEl(event.currentTarget);
+  const handleCloseNavMenu = () => {
+    setAnchorElNav(null);
   };
 
-  const handleClose = () => {
-    setAnchorEl(null);
+  const handleCloseUserMenu = () => {
+    setAnchorElUser(null);
   };
 
   return (
-    <>
-      <Box sx={{ display: "flex" }}>
-        <CssBaseline />
-        <AppBar position="relative" style={{ backgroundColor: "#ee7724" }}>
-          <Toolbar>
-            <Typography
-              variant="h6"
-              component="div"
-              sx={{ flexGrow: 55678 }}
-              paddingLeft={2}
-            >
-              <img src={logo} style={{ width: "55px" }} alt="logo" />
-              <Link style={{ color: "White" }} to="/">
-                 Moodify
-              </Link>
-            </Typography>
+    <AppBar position="sticky" style={{ backgroundColor: '#272626', boxShadow: '1px 1px 6px #1b1a1a', borderBottom: '0.5px solid #767676'}}>
+      <Container maxWidth="100vw" style={{ backgroundColor: '#212020'}}>
+        <Toolbar disableGutters>
+          <img src={moodifyIcon} style={{  width: '40px', paddingRight: '10px'}} sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
+          <Typography
+            variant="h6"
+            noWrap
+            component="a"
+            href="#app-bar-with-responsive-menu"
+            sx={{
+              mr: 2,
+              display: { xs: 'none', md: 'flex' },
+              fontFamily: 'Raleway',
+              fontWeight: 500,
+              // letterSpacing: '.3rem',
+              color: 'inherit',
+              textDecoration: 'none',
+            }}
+          >
+            MOODIFY
+          </Typography>
+
+          <Box sx={{ flexGrow: 50 }} />
+          {/* <Box sx={{ flexGrow: 1 }} />
+          <Box sx={{ flexGrow: 1 }} /> */}
+          <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
             <IconButton
               size="large"
               aria-label="account of current user"
               aria-controls="menu-appbar"
               aria-haspopup="true"
-              onClick={handleMenu}
+              onClick={handleOpenNavMenu}
               color="inherit"
             >
-              <AccountCircle />
+              <MenuIcon />
             </IconButton>
-
             <Menu
               id="menu-appbar"
-              style={{ color: "black" }}
-              anchorEl={anchorEl}
+              anchorEl={anchorElNav}
               anchorOrigin={{
-                vertical: "top",
-                horizontal: "right",
+                vertical: 'bottom',
+                horizontal: 'right',
               }}
               keepMounted
               transformOrigin={{
-                vertical: "top",
-                horizontal: "right",
+                vertical: 'top',
+                horizontal: 'right',
               }}
-              open={Boolean(anchorEl)}
-              onClose={handleClose}
+              open={Boolean(anchorElNav)}
+              onClose={handleCloseNavMenu}
+              sx={{
+                display: { xs: 'block', md: 'none' },
+              }}
             >
-              <MenuItem onClick={useLogout}>
-                <ListItemIcon>
-                  <LogoutIcon />
-                </ListItemIcon>
-                <Link to="/login" >
-            Logout
-          </Link>
-              </MenuItem>
+              {pages.map((page) => (
+                <MenuItem key={page} onClick={handleCloseNavMenu}>
+                  <Typography textAlign="center">{page}</Typography>
+                </MenuItem>
+              ))}
             </Menu>
-          </Toolbar>
-        </AppBar>
-      </Box>
-    </>
+          </Box>
+          <AdbIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
+          <Typography
+            variant="h5"
+            noWrap
+            component="a"
+            href="#app-bar-with-responsive-menu"
+            sx={{
+              mr: 2,
+              display: { xs: 'flex', md: 'none' },
+              flexGrow: 1,
+              fontFamily: 'monospace',
+              fontWeight: 700,
+              letterSpacing: '.3rem',
+              color: 'inherit',
+              textDecoration: 'none',
+            }}
+          >
+            LOGO
+          </Typography>
+          <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
+            {pages.map((page) => (
+              <Button
+                key={page}
+                onClick={handleCloseNavMenu}
+                sx={{ my: 2, color: 'white', display: 'block' }}
+              >
+                {page}
+              </Button>
+            ))}
+          </Box>
+
+          <Box sx={{ flexGrow: 0 }}>
+            <Tooltip title="Open settings">
+              <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }} style={{backgroundColor: '#b196e4'}}>
+                <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" sx={{ bgcolor: '#b196e4'}} />
+              </IconButton>
+            </Tooltip>
+            <Menu
+              sx={{ mt: '45px' }}
+              id="menu-appbar"
+              anchorEl={anchorElUser}
+              anchorOrigin={{
+                vertical: 'top',
+                horizontal: 'right',
+              }}
+              keepMounted
+              transformOrigin={{
+                vertical: 'top',
+                horizontal: 'right',
+              }}
+              open={Boolean(anchorElUser)}
+              onClose={handleCloseUserMenu}
+            >
+              {settings.map((setting) => (
+                <MenuItem key={setting} onClick={handleCloseUserMenu}>
+                  <Typography textAlign="center">{setting}</Typography>
+                </MenuItem>
+              ))}
+            </Menu>
+          </Box>
+        </Toolbar>
+      </Container>
+    </AppBar>
   );
 }
+export default Navbar;
