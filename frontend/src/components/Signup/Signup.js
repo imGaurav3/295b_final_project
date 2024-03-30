@@ -12,6 +12,7 @@ import logo from '../../logo.jpg';
 import axios from 'axios';
 import url from '../../utils/urlconfig';
 import jwtDecode from 'jwt-decode';
+import Navbar from '../Common/Navbar';
 
 class Signup extends PureComponent {
   constructor(props) {
@@ -127,7 +128,8 @@ class Signup extends PureComponent {
       redirectVar = <Redirect to={this.state.redirect} />;
     }
     return (
-      <div className='signup-page'>
+      <div className='signup-page' style={{display: 'flex', flexDirection: 'column', width: '100%'}}>
+        <Navbar />
         {redirectVar}
         <MDBContainer className='my-5 signup-form-left'>
           <MDBRow>

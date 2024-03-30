@@ -7,6 +7,7 @@ import Chip from '@mui/material/Chip';
 import Stack from '@mui/material/Stack';
 import popcornImg from '../../images/Popcorns-bro.png'
 import movieImg from '../../images/Home_cinema_amico.png'
+import Navbar from "../Common/Navbar";
 
 
 const PageOne = () => {
@@ -48,9 +49,10 @@ const PageOne = () => {
   ];
 
   return (
-    <div className='signin-questions-page'>
-      
-      <MDBContainer className='signup-form-left' display="flex">
+    <div className='signup-questions-page' style={{display: 'flex', flexDirection: 'column', width: '100%'}}>
+      <Navbar/>
+
+      <MDBContainer className='signup-form-left' display="flex" style={{paddingTop: '20px'}}>
 
         <MDBRow>
            
@@ -93,7 +95,7 @@ const PageOne = () => {
                 <br></br>
 
                 <div>
-                    <div className='questionnaire-labels' style={{ paddingBottom: '2px', paddingTop: '25px', fontSize: '17px', fontWeight: 'bolder' }}>
+                    <div className='questionnaire-labels' style={{ paddingBottom: '2px', paddingTop: '22px', fontSize: '17px', fontWeight: 'bolder' }}>
                     What movie genres do you prefer when you’re feeling Happy?
                     </div>
                     <div style={{ display: 'flex', flexWrap: 'wrap', gap: '20px', marginTop: '7px' }}>
@@ -116,7 +118,7 @@ const PageOne = () => {
                 <br></br>
 
                 <div>
-                    <div className='questionnaire-labels' style={{ paddingBottom: '2px', paddingTop: '25px', fontSize: '17px', fontWeight: 'bolder' }}>
+                    <div className='questionnaire-labels' style={{ paddingBottom: '2px', paddingTop: '22px', fontSize: '17px', fontWeight: 'bolder' }}>
                     What movie genres do you prefer when you’re feeling Sad?
                     </div>
                     <div style={{ display: 'flex', flexWrap: 'wrap', gap: '20px', marginTop: '7px' }}>
@@ -139,7 +141,7 @@ const PageOne = () => {
                 <br></br>
 
                 <div>
-                    <div className='questionnaire-labels' style={{ paddingBottom: '2px', paddingTop: '25px', fontSize: '17px', fontWeight: 'bolder' }}>
+                    <div className='questionnaire-labels' style={{ paddingBottom: '2px', paddingTop: '22px', fontSize: '17px', fontWeight: 'bolder' }}>
                     What movie genres do you prefer when you’re feeling Neutral?
                     </div>
                     <div style={{ display: 'flex', flexWrap: 'wrap', gap: '20px', marginTop: '7px' }}>
@@ -161,14 +163,13 @@ const PageOne = () => {
 
 
               </div>
-              <div></div>
             </div>
             </MDBCol>
             
         </MDBRow>
 
         {/* Absolute positioned images */}
-        <div style={{ position: 'absolute', bottom: 0, left: 20 }}>
+        <div style={{ position: 'absolute', bottom: 10, left: 20 }}>
             <img src={movieImg} alt="Right Side Image" style={{ width: '20%', height: 'auto' }} />
         </div>
         <div style={{ position: 'absolute', bottom: 15, right: 25 }}>

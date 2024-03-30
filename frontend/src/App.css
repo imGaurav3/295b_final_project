@@ -191,7 +191,6 @@ body {
 
 .regular-text{
   font-size: 15px;
-  font-weight: 400;
   color: #ccc;
 }
 
@@ -202,6 +201,17 @@ body {
   justify-content: center; /* Horizontally center */
   align-items: center; /* Vertically center */
   /* height: 100vh; Ensure the form is vertically centered on the page */
+  overflow: hidden;
+}
+
+.signup-questions-page {
+  background-color: #272626;
+  font-family: "Hind", sans-serif;
+  display: flex;
+  justify-content: center; /* Horizontally center */
+  align-items: center; /* Vertically center */
+  height: 100vh; /* Ensure the form is vertically centered on the page */
+  overflow: hidden;
 }
 
 .signin-ques-page{
