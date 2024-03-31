@@ -4,7 +4,7 @@ import url from '../../utils/urlconfig';
 import Charts from "./Chart.js"
 import "bootstrap/dist/css/bootstrap.css";
 import ChoiceSelector from "./ChoiceSelector";
-import Navbar from "../Common/Navbar";
+import Navbar from "../NavBar/Navbar.js";
 
 
 function GymDashboard() {

@@ -20,7 +20,7 @@ import { MenuList } from '@mui/material';
 import {SegmentedControl} from '@primer/react'
 import Chip from '@mui/material/Chip';
 import Stack from '@mui/material/Stack';
-import Navbar from "../Common/Navbar";
+import Navbar from "../NavBar/Navbar";
 
 import happyWhiteIcon from '../../images/happiness_white.png';
 import happyPurpleIcon from '../../images/happiness_purple.png';
@@ -321,8 +321,8 @@ const SignInQuestionnaire = () => {
           </div>
         )}
         {selectedOption === 'Music' && (
-          <div style={{ position: 'absolute', bottom: 0, right: 25 }}>
-            <img src={musicImg} alt="Left Side Image" style={{ width: 'auto', height: '375px' }} />
+          <div style={{ position: 'absolute', bottom: 0, left: '78vw' }}>
+            <img src={musicImg} alt="Left Side Image" style={{ width: '102%', height: 'auto' }} />
           </div>
         )}
 

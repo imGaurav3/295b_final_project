@@ -147,10 +147,11 @@ body {
 .recommendation-container{
   display: flex;
   justify-content: center;
+  font-family: 'Hind';
 }
 .recommendation-form{
   /* padding-right: 10px; */
-  padding-top: 50px;
+  padding-top: 10px;
 }
 
 .signup-page {
@@ -171,6 +172,11 @@ body {
   color: rgb(221, 220, 218);
 }
 
+.movie-recommend-heading {
+  font-size: 20px;
+  color: rgb(221, 220, 218);
+}
+
 .signup-labels{
   font-size: 17px;
   font-weight: 400;
@@ -180,7 +186,7 @@ body {
   font-size: 17px;
   font-weight: 400;
   color: #ccc;
-  /* color: #212020 */
+  /* color: #151415 */
 }
 
 .signin-link{
@@ -211,6 +217,15 @@ body {
   justify-content: center; /* Horizontally center */
   align-items: center; /* Vertically center */
   height: 100vh; /* Ensure the form is vertically centered on the page */
+  overflow: hidden;
+}
+
+.dashboard-page{
+  background-color: #272626;
+  font-family: "Hind", sans-serif;
+  display: flex;
+  justify-content: center; /* Horizontally center */
+  align-items: center; /* Vertically center */
   overflow: hidden;
 }
 

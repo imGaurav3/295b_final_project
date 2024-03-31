@@ -10,7 +10,7 @@ import logo from '../../logo.jpg';
 import jwtDecode from 'jwt-decode';
 import { MDBContainer, MDBRow, MDBCol } from 'mdb-react-ui-kit';
 import pic from '../../images/signup-page-img.png';
-import Navbar from '../Common/Navbar';
+import Navbar from '../NavBar/Navbar';
 
 class Login extends PureComponent {
   constructor(props) {
