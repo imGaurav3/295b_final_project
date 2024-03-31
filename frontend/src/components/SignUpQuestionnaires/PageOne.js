@@ -182,9 +182,9 @@ const PageOne = () => {
                     </div>
                 </div>
 
-                <br style={{paddingTop: '10px'}}></br>
+                <br></br>
 
-                <div style={{display: 'flex', justifyContent: 'center', zIndex: 1}}>
+                <div style={{display: 'flex', justifyContent: 'center', zIndex: 1, paddingTop: '16px'}}>
                   <ColorButton variant="contained" endIcon={<ArrowForwardIcon />}>
                     Explore Recommendations! 
                   </ColorButton>
