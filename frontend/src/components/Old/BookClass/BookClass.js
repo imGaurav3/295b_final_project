@@ -8,7 +8,7 @@ import { MDBContainer, MDBRow, MDBCol, MDBIcon } from "mdb-react-ui-kit";
 import DateFnsUtils from '@date-io/date-fns';
 import { KeyboardDatePicker, DatePicker, MuiPickersUtilsProvider } from "@material-ui/pickers";
 import { FormControl, InputLabel, Select, MenuItem } from "@material-ui/core";
-import Navbar from "../Common/Navbar";
+import Navbar from "../NavBar/Navbar";
 import url from "../../utils/urlconfig";
 import "../../App.css";
 import flightImg from "../../../src/yoga.png";

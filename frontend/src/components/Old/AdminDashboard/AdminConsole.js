@@ -3,7 +3,7 @@ import React, { PureComponent } from 'react';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../../App.css';
-import Navbar from '../Common/Navbar';
+import Navbar from '../NavBar/Navbar';
 import Button from 'react-bootstrap/Button';
 import { MDBContainer, MDBRow, MDBCol, MDBIcon } from 'mdb-react-ui-kit';
 import { Modal } from 'react-bootstrap';

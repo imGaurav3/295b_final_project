@@ -12,7 +12,7 @@ import logo from '../../logo.jpg';
 import axios from 'axios';
 import url from '../../utils/urlconfig';
 import jwtDecode from 'jwt-decode';
-import Navbar from '../Common/Navbar';
+import Navbar from '../NavBar/Navbar';
 
 class Signup extends PureComponent {
   constructor(props) {

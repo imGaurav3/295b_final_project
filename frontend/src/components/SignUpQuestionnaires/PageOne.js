@@ -7,7 +7,7 @@ import Chip from '@mui/material/Chip';
 import Stack from '@mui/material/Stack';
 import popcornImg from '../../images/Popcorns-bro.png'
 import movieImg from '../../images/Home_cinema_amico.png'
-import Navbar from "../Common/Navbar";
+import Navbar from "../NavBar/Navbar";
 
 
 const PageOne = () => {
