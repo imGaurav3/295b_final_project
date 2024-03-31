@@ -78,7 +78,7 @@ const PageOne = () => {
         <MDBRow>
            
             <MDBCol col='6' className='mb-5'>
-            <div className="signin-ques-page" style={{ paddingLeft: '20px'}}>
+            <div className="signin-ques-page" style={{ paddingLeft: '20px', paddingTop: '12px'}}>
               <h1 className='bookheading text-center' style={{ fontWeight: 'bold' }}>
                 Let's get you set up!
               </h1>
@@ -184,7 +184,7 @@ const PageOne = () => {
 
                 <br></br>
 
-                <div style={{display: 'flex', justifyContent: 'center', zIndex: 1, paddingTop: '16px'}}>
+                <div style={{display: 'flex', justifyContent: 'center', zIndex: 1, paddingTop: '10px'}}>
                   <ColorButton variant="contained" endIcon={<ArrowForwardIcon />}>
                     Explore Recommendations! 
                   </ColorButton>
