@@ -3,7 +3,7 @@ import { Redirect } from 'react-router';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../../App.css';
 import { MDBContainer, MDBRow, MDBCol } from 'mdb-react-ui-kit';
-import Button from 'react-bootstrap/Button';
+// import Button from 'react-bootstrap/Button';
 import pic from '../../images/signup-page-img.png';
 import logo from '../../logo.jpg';
 import axios from 'axios';
@@ -21,6 +21,8 @@ import {SegmentedControl} from '@primer/react'
 import Chip from '@mui/material/Chip';
 import Stack from '@mui/material/Stack';
 import Navbar from "../NavBar/Navbar";
+import Button from '@mui/material/Button';
+import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 
 import happyWhiteIcon from '../../images/happiness_white.png';
 import happyPurpleIcon from '../../images/happiness_purple.png';
@@ -31,6 +33,25 @@ import neutralPurpleIcon from '../../images/neutral_purple.png';
 
 import horrorImg from '../../images/Horror-movie-bro.png';
 import musicImg from '../../images/Music-bro.png';
+
+
+const ColorButton = styled(Button)(({ theme }) => ({
+  color: 'white',
+  backgroundColor: '#b196e4',
+  '&:hover': {
+    backgroundColor: '#8268b3',
+    cursor: 'click',
+  },
+  borderRadius: '10px',
+  width: '23%',
+  textTransform: 'none',
+  fontFamily: 'Hind',
+  letterSpacing: 'normal',
+  fontSize: '16px',
+  fontWeight: 'bolder',
+  paddingLeft: '2px',
+  paddingRight: '2px'
+}));
 
 const BootstrapInput = styled(InputBase)(({ theme }) => ({
   'label + &': {
@@ -113,31 +134,6 @@ const SignInQuestionnaire = () => {
                 <div className='questionnaire-labels' style={{ paddingBottom: '5px' }}>
                   How are you feeling today?
                 </div>
-                {/* <Box sx={{ minWidth: 80 }} style={{ color: '#3A3A3B'}}>
-                  <FormControl fullWidth variant="standard" style={{ color: '#3A3A3B'}}>
-                    <InputLabel id="demo-simple-select-label" style={{ color: '#ccc', paddingLeft: '14px', fontSize: '14px' }}>Mood</InputLabel>
-                    <Select
-                      labelId="demo-simple-select-label"
-                      id="demo-simple-select"
-                      value={mood}
-                      label="Mood"
-                      onChange={moodChangeHandler}
-                      input={<BootstrapInput />}
-                      // style={{border: '1.3px solid #ccc', borderRadius: '10px', '&:focus': {
-                      //   borderColor: '#b196e4',
-                      // }, }}
-                      MenuProps={{
-                        sx: '#3a3a3b',
-                      }}
-                    >
-                      <MenuList sx={{ backgroundColor: '#3A3A3B', fontFamily: 'Hind'}}>
-                        <MenuItem value="Happy" style={{ backgroundColor: '#3A3A3B', color: '#ccc' }}>Happy</MenuItem>
-                        <MenuItem value="Sad" style={{ backgroundColor: '#3A3A3B', color: '#ccc' }}>Sad</MenuItem>
-                        <MenuItem value="Neutral" style={{ backgroundColor: '#3A3A3B', color: '#ccc' }}>Neutral</MenuItem>
-                      </MenuList>
-                    </Select>
-                  </FormControl>
-                </Box> */}
                 <div style={{ display: 'flex', gap: '20px', paddingTop:'8px' }}>
                 <div style={{ textAlign: 'center', marginRight: '10px'  }}>
                     <img
@@ -262,10 +258,10 @@ const SignInQuestionnaire = () => {
 
                 <br style={{paddingBottom:'7px'}}></br>
 
-                <div className='questionnaire-labels' style={{ paddingBottom: '8px' }}>
+                <div className='questionnaire-labels' style={{ paddingBottom: '8px', zIndex: 1 }}>
                   Are you in the mood for a new release or a classic?
                 </div>
-                <div style={{ display: 'flex', fontFamily: 'Hind'}}>
+                <div style={{ display: 'flex', fontFamily: 'Hind', zIndex: 1}}>
                   <Stack direction="row" spacing={1}>
                     <Chip 
                       onClick={() => handleTimeChipClick('Classics (< 1990)')}
@@ -299,7 +295,15 @@ const SignInQuestionnaire = () => {
                     />
                   </Stack>
                 </div>
+                  
+                <br></br>
+                <br></br>
 
+                <div style={{display: 'flex', justifyContent: 'end', zIndex: 1}}>
+                  <ColorButton variant="contained" endIcon={<ArrowForwardIcon />}>
+                    Reveal Picks 
+                  </ColorButton>
+                </div>
 
               </div>
               <div></div>
@@ -317,12 +321,12 @@ const SignInQuestionnaire = () => {
         </MDBContainer>
         
         {selectedOption === 'Movies' && (
-          <div style={{ position: 'absolute', bottom: 10, left: 20 }}>
+          <div style={{ position: 'absolute', bottom: 10, left: 20, zIndex: 0 }}>
             <img src={horrorImg} alt="Right Side Image" style={{ width: '20%', height: 'auto' }} />
           </div>
         )}
         {selectedOption === 'Music' && (
-          <div style={{ position: 'absolute', bottom: 0, left: '78vw' }}>
+          <div style={{ position: 'absolute', bottom: 0, left: '78vw', zIndex: 0 }}>
             <img src={musicImg} alt="Left Side Image" style={{ width: '102%', height: 'auto' }} />
           </div>
         )}
