@@ -22,16 +22,20 @@ class MusicRecommendation extends PureComponent {
     super(props);
     this.state = {
       email: '',
-      password: '',
-      // redirect: '/music',
+      password: '',        
+      musicUrls: [
+          'https://open.spotify.com/embed/track/7qiZfU4dY1lWllzX7mPBI3?utm_source=oembed',
+          'https://open.spotify.com/embed/track/5mjYQaktjmjcMKcUIcqz4s?utm_source=oembed',
+          'https://open.spotify.com/embed/track/5aIVCx5tnk0ntmdiinnYvw?utm_source=oembed',
+          'https://open.spotify.com/embed/track/0LMwmV37RCmBO2so0szAFs?utm_source=oembed',
+          'https://open.spotify.com/embed/track/3Pbp7cUCx4d3OAkZSCoNvn?utm_source=oembed',
+        ],
+
     };
   }
 
   render() {
-    // let redirectVar = null;
-    // if (this.state.redirect) {
-    //   redirectVar = <Redirect to={this.state.redirect} />;
-    // }
+   
     return (
       <div>
       <MDBContainer className='recommendation-container'>
@@ -46,145 +50,31 @@ class MusicRecommendation extends PureComponent {
               {/* <img src={logo} style={{ width: '185px' }} alt='logo' /> */}
               <h1 className='movie-recommend-heading'>Get your headphones ready! Explore our curated music recommendations tailored just for you.</h1>
             </div>
-            <MDBRow>
-              <div
-                style={{
-                  paddingTop: '25px',
-                  textAlign: 'center',
-                  width: '50vw',
-                  margin: 'auto',
-                }}
-              >
-                <iframe
-                  src='https://open.spotify.com/embed/track/7qiZfU4dY1lWllzX7mPBI3?utm_source=oembed'
-                  style={{ width: '80%', height: '85px' }} // Setting width to 100% of the parent div, and height directly
-                  frameBorder='0'
-                  allowFullScreen=''
-                  allow='autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture'
-                  loading='lazy'
-                  marginheight='0'
-                  marginwidth='0'
-                  hspace='0'
-                  vspace='0'
-                ></iframe>
-              </div>
-            </MDBRow>
-            <MDBRow>
-              <div
-                style={{
-                  paddingTop: '15px',
-                  textAlign: 'center',
-                  width: '50vw',
-                  margin: 'auto',
-                }}
-              >
-                <iframe
-                  src='https://open.spotify.com/embed/track/5mjYQaktjmjcMKcUIcqz4s?utm_source=oembed'
-                  style={{ width: '80%', height: '85px' }} // Setting width to 100% of the parent div, and height directly
-                  frameBorder='0'
-                  allowFullScreen=''
-                  allow='autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture'
-                  loading='lazy'
-                ></iframe>
-              </div>
-            </MDBRow>
 
-            <MDBRow>
-              <div
-                style={{
-                  paddingTop: '15px',
-                  textAlign: 'center',
-                  width: '50vw',
-                  margin: 'auto',
-                }}
-              >
-                <iframe
-                  src='https://open.spotify.com/embed/track/5aIVCx5tnk0ntmdiinnYvw?utm_source=oembed'
-                  style={{ width: '80%', height: '85px' }} // Setting width to 100% of the parent div, and height directly
-                  frameBorder='0'
-                  allowFullScreen=''
-                  allow='autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture'
-                  loading='lazy'
-                ></iframe>
-              </div>
-            </MDBRow>
+            <MDBRow style={{ paddingTop: '10px'}}>
+                {this.state.musicUrls.map((url, index) => (
+                  <div
+                    key={index}
+                    style={{
+                      paddingTop: '15px',
+                      textAlign: 'center',
+                      width: '50vw',
+                      margin: 'auto',
+                    }}
+                  >
+                    <iframe
+                      src={url}
+                      style={{ width: '80%', height: '85px' }}
+                      frameBorder='0'
+                      allowFullScreen=''
+                      allow='autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture'
+                      loading='lazy'
+                    ></iframe>
+                  </div>
+                ))}
+              </MDBRow>
 
-            <MDBRow>
-              <div
-                style={{
-                  paddingTop: '15px',
-                  textAlign: 'center',
-                  width: '50vw',
-                  margin: 'auto',
-                }}
-              >
-                <iframe
-                  src='https://open.spotify.com/embed/track/0LMwmV37RCmBO2so0szAFs?utm_source=oembed'
-                  style={{ width: '80%', height: '85px' }} // Setting width to 100% of the parent div, and height directly
-                  frameBorder='0'
-                  allowFullScreen=''
-                  allow='autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture'
-                  loading='lazy'
-                ></iframe>
-              </div>
-            </MDBRow>
-            <MDBRow>
-              <div
-                style={{
-                  paddingTop: '15px',
-                  textAlign: 'center',
-                  width: '50vw',
-                  margin: 'auto',
-                }}
-              >
-                <iframe
-                  src='https://open.spotify.com/embed/track/3Pbp7cUCx4d3OAkZSCoNvn?utm_source=oembed'
-                  style={{ width: '80%', height: '85px' }} // Setting width to 100% of the parent div, and height directly
-                  frameBorder='0'
-                  allowFullScreen=''
-                  allow='autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture'
-                  loading='lazy'
-                ></iframe>
-              </div>
-            </MDBRow>
-            {/* <MDBRow>
-              <div
-                style={{
-                  paddingTop: '15px',
-                  textAlign: 'center',
-                  width: '50vw',
-                  margin: 'auto',
-                }}
-              >
-                <iframe
-                  src='https://open.spotify.com/embed/track/22dUzMFttcR3uU17NcOAIv?utm_source=oembed'
-                  style={{  width: '80%', height: '85px'}} // Setting width to 100% of the parent div, and height directly
-                  frameBorder='0'
-                  allowFullScreen=''
-                  allow='autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture'
-                  loading='lazy'
-                ></iframe>
-              </div>
-            </MDBRow>
-            <MDBRow>
-              <div
-                style={{
-                  paddingTop: '15px',
-                  textAlign: 'center',
-                  width: '50vw',
-                  margin: 'auto',
-                }}
-              >
-                <iframe
-                  src='https://open.spotify.com/embed/track/48vIfHaK7by6x0T6ucpODL?utm_source=oembed'
-                  style={{ width: '80%', height: '85px'}} // Setting width to 100% of the parent div, and height directly
-                  frameBorder='0'
-                  allowFullScreen=''
-                  allow='autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture'
-                  loading='lazy'
-                ></iframe>
-              </div>
-            </MDBRow> */}
+            
             <br></br>
           </MDBCol>
         </MDBRow>
