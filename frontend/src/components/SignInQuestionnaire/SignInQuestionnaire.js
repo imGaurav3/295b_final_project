@@ -314,7 +314,8 @@ const SignInQuestionnaire = () => {
         <div style={{ position: 'absolute', bottom: 15, right: 25 }}>
         <img src={happyImg} alt="Left Side Image" style={{ width: 'auto', height: '375px' }} />
         </div> */}
-
+        </MDBContainer>
+        
         {selectedOption === 'Movies' && (
           <div style={{ position: 'absolute', bottom: 10, left: 20 }}>
             <img src={horrorImg} alt="Right Side Image" style={{ width: '20%', height: 'auto' }} />
@@ -326,7 +327,7 @@ const SignInQuestionnaire = () => {
           </div>
         )}
 
-      </MDBContainer>
+      
     </div>
   );
 }
