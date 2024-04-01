@@ -3,6 +3,7 @@ const express = require("express");
 
 const app = express();
 const bodyParser = require("body-parser");
+const { createProxyMiddleware } = require("http-proxy-middleware");
 const session = require("express-session");
 const cors = require("cors");
 
@@ -19,6 +20,16 @@ app.use("/*", (req, res, next) => {
   res.setHeader("Access-Control-Allow-Credentials", "true");
   next();
 });
+
+// Proxy configuration
+// Forward all requests from /api/ml to Flask running on port 5000
+app.use('/api/ml', createProxyMiddleware({
+  target: 'http://127.0.0.1:5000',
+  changeOrigin: true,
+  pathRewrite: {
+    '^/api/ml': '', // optionally rewrite path
+  },
+}));
 
 const signup = require("./routes/signup");
 const login = require("./routes/login");

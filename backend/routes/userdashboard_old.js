@@ -9,6 +9,15 @@ require("dotenv/config");
 const pool = require("../mysql_db");
 
 
+
+  /*
+-------------------------------------------------------------------------------------------
+User Dashboard Routes for 202
+-------------------------------------------------------------------------------------------
+*/
+
+//GET USER MEMBERSHIP
+
 //Display membership name, cost, start data, end date 
 router.get("/mymem/:id", (req, res) => {
     const { id } = req.params;
