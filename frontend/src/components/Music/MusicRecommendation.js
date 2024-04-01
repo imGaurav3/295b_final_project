@@ -7,11 +7,11 @@ import '../../App.css';
 import { MDBContainer, MDBRow, MDBCol } from 'mdb-react-ui-kit';
 
 // import * as React from 'react';
-import Card from '@mui/material/Card';
-import CardContent from '@mui/material/CardContent';
-import CardMedia from '@mui/material/CardMedia';
-import Typography from '@mui/material/Typography';
-import { CardActionArea } from '@mui/material';
+// import Card from '@mui/material/Card';
+// import CardContent from '@mui/material/CardContent';
+// import CardMedia from '@mui/material/CardMedia';
+// import Typography from '@mui/material/Typography';
+// import { CardActionArea } from '@mui/material';
 
 import music1 from '../../images/Music-rafiki.png'
 import music2 from '../../images/Headphone-rafiki.png'

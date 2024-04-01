@@ -24,6 +24,8 @@ import Navbar from "../NavBar/Navbar";
 import Button from '@mui/material/Button';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 
+import { useHistory } from 'react-router-dom';
+
 import happyWhiteIcon from '../../images/happiness_white.png';
 import happyPurpleIcon from '../../images/happiness_purple.png';
 import sadWhiteIcon from '../../images/sad_white.png';
@@ -75,6 +77,9 @@ const BootstrapInput = styled(InputBase)(({ theme }) => ({
 }));
 
 const SignInQuestionnaire = () => {
+
+  const history = useHistory();
+
   const [redirect, setRedirect] = useState(null);
   const [mood, setMood] = useState("");
   const [selectedOption, setSelectedOption] = useState("Movies"); // Initial selected option
@@ -90,7 +95,10 @@ const SignInQuestionnaire = () => {
     setMood(event.target.value);
   };
 
-
+  const handleExploreRecommendations = () => {
+    // Navigate to the dashboard route when Explore Recommendations button is clicked
+    history.push('/dashboard');
+  };
 
   const handleOptionChange = (option) => {
     setSelectedOption(option);
@@ -119,7 +127,7 @@ const SignInQuestionnaire = () => {
       <MDBContainer className='signup-form-left'>
         <MDBRow>
           <MDBCol col='6' className=''>
-            <div className="signin-ques-page" style={{paddingLeft: '40px'}}>
+            <div className="signin-ques-page" style={{paddingLeft: '40px', zIndex: '5'}}>
               <h1 className='bookheading text-center' style={{ fontWeight: 'bold' }}>
                 Discover Your Perfect Picks!
               </h1>
@@ -170,7 +178,7 @@ const SignInQuestionnaire = () => {
                 <div className='questionnaire-labels' style={{ paddingBottom: '5px' }}>
                   What are you in the mood for?
                 </div>
-                <div style={{display:'flex',paddingTop: '5px'}}>
+                <div style={{display:'flex',paddingTop: '5px', zIndex: '6'}}>
                   <SegmentedControl sx={{borderRadius: "10px", border: '2px solid white', width: '510px', backgroundColor: '', height: '42px', fontSize: '15px'}} aria-label="File view">
                     <SegmentedControl.Button
                       sx={{
@@ -258,10 +266,10 @@ const SignInQuestionnaire = () => {
 
                 <br style={{paddingBottom:'7px'}}></br>
 
-                <div className='questionnaire-labels' style={{ paddingBottom: '8px', zIndex: 1 }}>
+                <div className='questionnaire-labels' style={{ paddingBottom: '8px', zIndex: 2 }}>
                   Are you in the mood for a new release or a classic?
                 </div>
-                <div style={{ display: 'flex', fontFamily: 'Hind', zIndex: 1}}>
+                <div style={{ display: 'flex', fontFamily: 'Hind', zIndex: 2}}>
                   <Stack direction="row" spacing={1}>
                     <Chip 
                       onClick={() => handleTimeChipClick('Classics (< 1990)')}
@@ -299,8 +307,8 @@ const SignInQuestionnaire = () => {
                 <br></br>
                 <br></br>
 
-                <div style={{display: 'flex', justifyContent: 'end', zIndex: 1}}>
-                  <ColorButton variant="contained" endIcon={<ArrowForwardIcon />}>
+                <div style={{display: 'flex', justifyContent: 'end', zIndex: 2}}>
+                  <ColorButton variant="contained" endIcon={<ArrowForwardIcon />} onClick={handleExploreRecommendations}>
                     Reveal Picks 
                   </ColorButton>
                 </div>
@@ -321,13 +329,13 @@ const SignInQuestionnaire = () => {
         </MDBContainer>
         
         {selectedOption === 'Movies' && (
-          <div style={{ position: 'absolute', bottom: 10, left: 20, zIndex: 0 }}>
-            <img src={horrorImg} alt="Right Side Image" style={{ width: '20%', height: 'auto' }} />
+          <div style={{ position: 'absolute', bottom: 10, left: 20, zIndex: 0, width: '20%' }}>
+            <img src={horrorImg} alt="Right Side Image" style={{ width: '100%', height: 'auto', zIndex: 0 }} />
           </div>
         )}
         {selectedOption === 'Music' && (
           <div style={{ position: 'absolute', bottom: 0, left: '78vw', zIndex: 0 }}>
-            <img src={musicImg} alt="Left Side Image" style={{ width: '102%', height: 'auto' }} />
+            <img src={musicImg} alt="Left Side Image" style={{ width: '102%', height: 'auto', zIndex: 0  }} />
           </div>
         )}
 
