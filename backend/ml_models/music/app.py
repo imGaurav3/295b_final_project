@@ -1,0 +1,138 @@
+from flask import Flask, render_template, request
+import pandas as pd
+import pickle
+
+app = Flask(__name__)
+
+# Load the scaler
+with open('scaler.pkl', 'rb') as scaler_file:
+    scaler = pickle.load(scaler_file)
+
+# Load the multi-output model
+with open('multi_target_rf_model.pkl', 'rb') as model_file:
+    multi_target_rf = pickle.load(model_file)
+
+# Load your dataset
+df = pd.read_csv("./playlist_features.csv", index_col=0)
+# Make sure to preprocess your dataframe here as per your model's requirement
+
+df['Release_Year'] = pd.to_datetime(df['Release_Date']).dt.year
+
+
+def label_mood(row):
+    if row['Valence'] >= 0.7:
+        return 'happy'
+    elif row['Valence'] <= 0.39:
+        return 'sad'
+    else:
+        return 'neutral'
+
+
+df['Mood'] = df.apply(lambda row: label_mood(row), axis=1)
+
+# Categorize songs by release year
+
+
+def categorize_release_year(year):
+    if year >= 2023:
+        return 'latest'
+    elif 2010 <= year <= 2022:
+        return 'mid'
+    else:
+        return 'old'
+
+
+df['Release_Era'] = df['Release_Year'].apply(categorize_release_year)
+
+
+def recommend_songs_for_user_preferences(model, df, scaler, user_mood, user_era, num_recommendations):
+    print("Starting recommendations...")  # Debugging statement
+
+    # Assuming df is your original dataset and it has been processed as per the model's requirements
+
+    # Extract features and scale
+    features = df[['Valence', 'Danceability', 'Energy',
+                   'Release_Year', 'Acousticness', 'Loudness', 'Tempo']]
+    scaled_features = scaler.transform(features)
+
+    # Make predictions for the entire dataset
+    predictions = model.predict(scaled_features)
+
+    # Convert predictions to a DataFrame for easier handling
+    predictions_df = pd.DataFrame(
+        predictions, columns=['Mood', 'Release_Era'], index=df.index)
+
+    print("Predictions DataFrame created.")  # Debugging statement
+
+    # Add predictions back to the original dataset to filter
+    df_with_predictions = df.assign(
+        Predicted_Mood=predictions_df['Mood'], Predicted_Era=predictions_df['Release_Era'])
+
+    print("Filtering songs based on user preferences...")  # Debugging statement
+    # It's helpful to inspect the DataFrame shapes to ensure that the filtering hasn't introduced issues.
+    print(
+        f"df_with_predictions shape before filtering: {df_with_predictions.shape}")
+
+    # Filter based on user preferences
+    filtered_songs = df_with_predictions[
+        (df_with_predictions['Predicted_Mood'] == user_mood) &
+        (df_with_predictions['Predicted_Era'] == user_era)
+    ]
+
+    # Debugging statement
+    print(f"Filtered songs shape: {filtered_songs.shape}")
+
+    # Ensure the filtering operation is working as intended
+    if filtered_songs.empty:
+        print("No songs match the user preferences.")  # Debugging statement
+        return pd.DataFrame()  # Return an empty DataFrame if no songs match
+
+    # Sort and return top N recommendations
+    top_recommendations = filtered_songs.sort_values(
+        by=['Popularity'], ascending=False).head(num_recommendations)
+
+    # Debugging statement
+    print(f"Top recommendations shape: {top_recommendations.shape}")
+
+    return top_recommendations[['Track_id']]
+
+
+@app.route('/', methods=['GET', 'POST'])
+def index():
+    if request.method == 'POST':
+        user_mood = request.form.get('mood')
+        print(user_mood)
+        user_era = request.form.get('era')
+
+        recommendations = recommend_songs_for_user_preferences(
+            multi_target_rf, df, scaler, user_mood, user_era, 10)
+        print(recommendations['Track_id'])
+        if not recommendations.empty:
+            # Convert DataFrame column to list
+            recomm = recommendations['Track_id'].tolist()
+        else:
+            recomm = []
+        return render_template('music.html', recommendations=recomm)
+    return render_template('music.html', recommendations=None)
+
+
+@app.route('/predict', methods=['GET'])
+def predict():
+    user_mood = "happy"
+    print(user_mood)
+    user_era = "latest"
+
+    recommendations = recommend_songs_for_user_preferences(
+        multi_target_rf, df, scaler, user_mood, user_era, 5)
+    print(recommendations['Track_id'])
+    if not recommendations.empty:
+        # Convert DataFrame column to list
+        recomm = recommendations['Track_id'].tolist()
+    else:
+        recomm = []
+    return recomm
+
+
+# url = https://open.spotify.com/embed/track/7qiZfU4dY1lWllzX7mPBI3?utm_source=oembed
+if __name__ == '__main__':
+    app.run(debug=True)

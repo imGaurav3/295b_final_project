@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Song Recommendations</title>
+</head>
+<body>
+    <h2>Enter your mood and preferred era</h2>
+    <form action="/" method="post">
+        <label for="mood">Mood:</label>
+        <select name="mood" id="mood">
+            <option value="happy">Happy</option>
+            <option value="sad">Sad</option>
+            <option value="neutral">Neutral</option>
+        </select>
+        <label for="era">Era:</label>
+        <select name="era" id="era">
+            <option value="latest">Latest</option>
+            <option value="mid">2010-2022</option>
+            <option value="old">Before 2010</option>
+        </select>
+        <input type="submit" value="Recommend Songs">
+    </form>
+    {% if recommendations %}
+        <h3>Recommended Songs:</h3>
+        <ul>
+            {% for track_id in recommendations %}
+                <li>{{ track_id }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+</body>
+</html>

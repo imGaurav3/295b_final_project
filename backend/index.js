@@ -2,9 +2,11 @@
 const express = require('express');
 
 const app = express();
-const bodyParser = require('body-parser');
-const session = require('express-session');
-const cors = require('cors');
+const bodyParser = require("body-parser");
+const { createProxyMiddleware } = require("http-proxy-middleware");
+const session = require("express-session");
+const cors = require("cors");
+
 
 app.set('view engine', 'ejs');
 
@@ -20,9 +22,21 @@ app.use('/*', (req, res, next) => {
   next();
 });
 
+
+// Proxy configuration
+// Forward all requests from /api/ml to Flask running on port 5000
+app.use('/api/ml', createProxyMiddleware({
+  target: 'http://127.0.0.1:5000',
+  changeOrigin: true,
+  pathRewrite: {
+    '^/api/ml': '', // optionally rewrite path
+  },
+}));
+
 const signup = require('./routes/signup_old');
-const login = require('./routes/login');
-const userdashboard = require('./routes/userdashboard');
+const login = require("./routes/login");
+// const signinquestions = require("./routes/signinquestions");
+const userdashboard = require("./routes/userdashboard");
 // const hotel = require("./routes/hotel");
 // const email = require("./routes/share");
 const admin = require('./routes/admin');
