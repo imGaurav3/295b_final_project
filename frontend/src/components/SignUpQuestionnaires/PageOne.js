@@ -11,6 +11,7 @@ import Navbar from "../NavBar/Navbar";
 import Button from '@mui/material/Button';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import { styled } from '@mui/material/styles';
+import { useHistory } from 'react-router-dom';
 
 
 const ColorButton = styled(Button)(({ theme }) => ({
@@ -33,6 +34,8 @@ const ColorButton = styled(Button)(({ theme }) => ({
 
 const PageOne = () => {
  
+    const history = useHistory();
+
     const [selectedOverallChips, setSelectedOverallChips] = useState([]); // State for overall favorite genre
     const [selectedHappyChips, setSelectedHappyChips] = useState([]); // State for favorite genre when feeling happy
     const [selectedSadChips, setSelectedSadChips] = useState([]); // State for favorite genre when feeling sad
@@ -50,6 +53,11 @@ const PageOne = () => {
             setSelectedChips([...selectedChips, chip]);
           }
         }
+    };
+
+    const handleExploreRecommendations = () => {
+      // Navigate to the dashboard route when Explore Recommendations button is clicked
+      history.push('/dashboard');
     };
 
 // Array containing the options for chips
@@ -185,7 +193,7 @@ const PageOne = () => {
                 <br></br>
 
                 <div style={{display: 'flex', justifyContent: 'center', zIndex: 1, paddingTop: '10px'}}>
-                  <ColorButton variant="contained" endIcon={<ArrowForwardIcon />}>
+                  <ColorButton variant="contained" endIcon={<ArrowForwardIcon />} onClick={handleExploreRecommendations}>
                     Explore Recommendations! 
                   </ColorButton>
                 </div>
