@@ -52,8 +52,9 @@ function Navbar() {
               fontFamily: 'Raleway',
               fontWeight: 500,
               // letterSpacing: '.3rem',
-              color: 'inherit',
+              color: 'white',
               textDecoration: 'none',
+              "&:hover": { color: "white", textDecoration: 'none' }
             }}
           >
             MOODIFY
