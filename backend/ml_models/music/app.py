@@ -1,8 +1,10 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, jsonify
+from flask_cors import CORS
 import pandas as pd
 import pickle
 
 app = Flask(__name__)
+CORS(app)
 
 # Load the scaler
 with open('scaler.pkl', 'rb') as scaler_file:
@@ -124,15 +126,16 @@ def predict():
 
     recommendations = recommend_songs_for_user_preferences(
         multi_target_rf, df, scaler, user_mood, user_era, 5)
-    print(recommendations['Track_id'])
+    print(recommendations['Track_id'].tolist())
     if not recommendations.empty:
         # Convert DataFrame column to list
         recomm = recommendations['Track_id'].tolist()
+        recomm_url = [
+            f"https://open.spotify.com/embed/track/{track_id}?utm_source=oembed" for track_id in recomm]
     else:
-        recomm = []
-    return recomm
+        recomm_url = []
+    return jsonify(recomm_url)
 
 
-# url = https://open.spotify.com/embed/track/7qiZfU4dY1lWllzX7mPBI3?utm_source=oembed
 if __name__ == '__main__':
     app.run(debug=True)
