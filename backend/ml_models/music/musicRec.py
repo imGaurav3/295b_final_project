@@ -112,7 +112,7 @@ def recommend_songs_for_user_preferences(model, df, scaler, user_mood, user_era,
 
 
 print(recommend_songs_for_user_preferences(
-    multi_target_rf, df, 'happy', 'mid', 10))
+    multi_target_rf, df, scaler, 'happy', 'mid', 10))
 
 # Save the trained model
 with open('multi_target_rf_model.pkl', 'wb') as model_file:
