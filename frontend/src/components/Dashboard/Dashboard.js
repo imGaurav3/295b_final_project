@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 // import { Redirect } from 'react-router';
 import PropTypes from 'prop-types';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -60,7 +61,21 @@ function CustomTabPanel(props) {
   
   export default function Dashboard() {
  
+    const location = useLocation();
     const [value, setValue] = React.useState(0);
+
+    useEffect(() => {
+      // Read the selected option from the query parameter
+      const searchParams = new URLSearchParams(location.search);
+      const selectedOption = searchParams.get('selectedOption');
+  
+      // Set the active tab based on the selected option
+      if (selectedOption === 'Music') {
+        setValue(1); // Music tab index is 1
+      } else {
+        setValue(0); // Movie tab index is 0 (default)
+      }
+    }, [location]);
 
     const handleChange = (event, newValue) => {
         setValue(newValue);

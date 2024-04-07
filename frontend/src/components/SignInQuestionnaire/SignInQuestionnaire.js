@@ -82,9 +82,11 @@ const SignInQuestionnaire = () => {
 
   const [redirect, setRedirect] = useState(null);
   const [mood, setMood] = useState("");
-  const [selectedOption, setSelectedOption] = useState("Movies"); // Initial selected option
-  const [selectedChip, setSelectedChip] = useState(null); // State to store the selected chip
-  const [selectedChipTime, setSelectedChipTime] = useState(null); // State to store the selected chip
+  const [selectedRecommOption, setSelectedRecommOption] = useState("Movies"); // Initial selected option
+  const [selectedChipGroup, setSelectedChipGroup] = useState(null); // State to store the selected chip
+  // const [selectedChipTime, setSelectedChipTime] = useState(null); // State to store the selected chip
+  const [selectedChipTimeDisplay, setSelectedChipTimeDisplay] = useState(null); // State to store the selected chip time for display
+  const [selectedChipTimeSend, setSelectedChipTimeSend] = useState(null); // State to store the formatted selected chip time for sending to API
   const [selectedMood, setSelectedMood] = useState(null);
 
   const handleMoodChange = (mood) => {
@@ -97,20 +99,45 @@ const SignInQuestionnaire = () => {
 
   const handleExploreRecommendations = () => {
     // Navigate to the dashboard route when Explore Recommendations button is clicked
-    history.push('/dashboard');
+    // history.push('/dashboard');
+    history.push(`/dashboard?selectedOption=${selectedRecommOption}`);
   };
 
+  // const handleExploreRecommendations = () => {
+  //   axios.post('YOUR_API_ENDPOINT', {
+  //     mood: selectedMood,
+  //     selectedRecommOption: selectedRecommOption,
+  //     selectedChipGroup: selectedChipGroup,
+  //     selectedChipTime: selectedChipTimeSend // Send the formatted selected chip time
+  //   })
+  //   .then(response => {
+  //     console.log(response);
+  //     // Redirect to dashboard after successful API call
+  //     history.push('/dashboard');
+  //   })
+  //   .catch(error => {
+  //     console.error('Error posting data to API: ', error);
+  //   });
+
+  //   // history.push('/dashboard');
+  // };
+
   const handleOptionChange = (option) => {
-    setSelectedOption(option);
+    setSelectedRecommOption(option);
   };
 
   const handleChipClick = (chip) => {
-    setSelectedChip(chip);
+    setSelectedChipGroup(chip);
   };
 
   const handleTimeChipClick = (chip) => {
-    setSelectedChipTime(chip);
+    // setSelectedChipTime(chip);
+    let formattedChip = chip.toLowerCase().replace(/\s/g, '_'); // Convert to lowercase and replace spaces with underscore
+    setSelectedChipTimeDisplay(chip); // Set the selected chip time for display
+    setSelectedChipTimeSend(formattedChip); // Set the formatted selected chip time for sending to API
   };
+
+  
 
   const getIcon = (mood) => {
     if (selectedMood === mood) {
@@ -182,31 +209,31 @@ const SignInQuestionnaire = () => {
                   <SegmentedControl sx={{borderRadius: "10px", border: '2px solid white', width: '510px', backgroundColor: '', height: '42px', fontSize: '15px'}} aria-label="File view">
                     <SegmentedControl.Button
                       sx={{
-                        backgroundColor: selectedOption === 'Movies' ? '#b196e4' : '#3a3a3b',
-                        color: selectedOption === 'Movies' ? 'white' : '#ccc',
-                        fontWeight: selectedOption === 'Movies' ? 'bold' : 'normal',
-                        border: selectedOption === 'Movies' ? '0px solid #A388C5' : 'none',
+                        backgroundColor: selectedRecommOption === 'Movies' ? '#b196e4' : '#3a3a3b',
+                        color: selectedRecommOption === 'Movies' ? 'white' : '#ccc',
+                        fontWeight: selectedRecommOption === 'Movies' ? 'bold' : 'normal',
+                        border: selectedRecommOption === 'Movies' ? '0px solid #A388C5' : 'none',
                         borderRadius: "10px 0 0 10px",
                         width: '250px',
                         height: '40px',
                         marginRight: '5px',
                       }}
-                      defaultSelected={selectedOption === 'Movies'}
+                      defaultSelected={selectedRecommOption === 'Movies'}
                       onClick={() => handleOptionChange('Movies')}
                     >
                       Movies
                     </SegmentedControl.Button>
                     <SegmentedControl.Button
                       sx={{
-                        backgroundColor: selectedOption === 'Music' ? '#b196e4' : '#3a3a3b',
-                        color: selectedOption === 'Music' ? 'white' : '#ccc',
-                        fontWeight: selectedOption === 'Music' ? 'bold' : 'normal',
-                        border: selectedOption === 'Music' ? '0px solid #A388C5' : 'none',
+                        backgroundColor: selectedRecommOption === 'Music' ? '#b196e4' : '#3a3a3b',
+                        color: selectedRecommOption === 'Music' ? 'white' : '#ccc',
+                        fontWeight: selectedRecommOption === 'Music' ? 'bold' : 'normal',
+                        border: selectedRecommOption === 'Music' ? '0px solid #A388C5' : 'none',
                         borderRadius: "0 10px 10px 0",
                         width: '250px',
                         height: '40px'
                       }}
-                      defaultSelected={selectedOption === 'Music'}
+                      defaultSelected={selectedRecommOption === 'Music'}
                       onClick={() => handleOptionChange('Music')}
                     >
                       Music
@@ -224,9 +251,9 @@ const SignInQuestionnaire = () => {
                     <Chip 
                       onClick={() => handleChipClick('Alone')}
                       style={{  
-                        backgroundColor: selectedChip === 'Alone' ? '#b196e4' : '#3a3a3b',
+                        backgroundColor: selectedChipGroup === 'Alone' ? '#b196e4' : '#3a3a3b',
                         color: 'white',
-                        fontWeight: selectedChip === 'Alone' ? 'bold' : 'normal'
+                        fontWeight: selectedChipGroup === 'Alone' ? 'bold' : 'normal'
                       }} 
                       label="Alone" 
                       // variant="outlined"
@@ -234,9 +261,9 @@ const SignInQuestionnaire = () => {
                     <Chip 
                       onClick={() => handleChipClick('With Friends')} 
                       style={{ 
-                        backgroundColor: selectedChip === 'With Friends' ? '#b196e4' : '#3a3a3b',
+                        backgroundColor: selectedChipGroup === 'With Friends' ? '#b196e4' : '#3a3a3b',
                         color: 'white',
-                        fontWeight: selectedChip === 'With Friends' ? 'bold' : 'normal'
+                        fontWeight: selectedChipGroup === 'With Friends' ? 'bold' : 'normal'
                       }} 
                       label="With Friends" 
                       // variant="outlined" 
@@ -244,9 +271,9 @@ const SignInQuestionnaire = () => {
                     <Chip 
                       onClick={() => handleChipClick('With Family')}
                       style={{ 
-                        backgroundColor: selectedChip === 'With Family' ? '#b196e4' : '#3a3a3b',
+                        backgroundColor: selectedChipGroup === 'With Family' ? '#b196e4' : '#3a3a3b',
                         color: 'white',
-                        fontWeight: selectedChip === 'With Family' ? 'bold' : 'normal'
+                        fontWeight: selectedChipGroup === 'With Family' ? 'bold' : 'normal'
                       }} 
                       label="With Family" 
                       // variant="outlined"
@@ -254,9 +281,9 @@ const SignInQuestionnaire = () => {
                     <Chip 
                       onClick={() => handleChipClick('With A Partner')}
                       style={{
-                        backgroundColor: selectedChip === 'With A Partner' ? '#b196e4' : '#3a3a3b',
+                        backgroundColor: selectedChipGroup === 'With A Partner' ? '#b196e4' : '#3a3a3b',
                         color: 'white',
-                        fontWeight: selectedChip === 'With A Partner' ? 'bold' : 'normal'
+                        fontWeight: selectedChipGroup === 'With A Partner' ? 'bold' : 'normal'
                       }}
                       label="With A Partner" 
                       // variant="outlined" 
@@ -274,9 +301,9 @@ const SignInQuestionnaire = () => {
                     <Chip 
                       onClick={() => handleTimeChipClick('Classics (< 1990)')}
                       style={{  
-                        backgroundColor: selectedChipTime === 'Classics (< 1990)' ? '#b196e4' : '#3a3a3b',
+                        backgroundColor: selectedChipTimeDisplay === 'Classics (< 1990)' ? '#b196e4' : '#3a3a3b',
                         color: 'white',
-                        fontWeight: selectedChipTime === 'Classics (< 1990)' ? 'bold' : 'normal'
+                        fontWeight: selectedChipTimeDisplay === 'Classics (< 1990)' ? 'bold' : 'normal'
                       }} 
                       label="Classics (< 1990)" 
                       // variant="outlined"
@@ -284,9 +311,9 @@ const SignInQuestionnaire = () => {
                     <Chip 
                       onClick={() => handleTimeChipClick('New Releases (> 1990)')} 
                       style={{ 
-                        backgroundColor: selectedChipTime === 'New Releases (> 1990)' ? '#b196e4' : '#3a3a3b',
+                        backgroundColor: selectedChipTimeDisplay === 'New Releases (> 1990)' ? '#b196e4' : '#3a3a3b',
                         color: 'white',
-                        fontWeight: selectedChipTime === 'New Releases (> 1990)' ? 'bold' : 'normal'
+                        fontWeight: selectedChipTimeDisplay === 'New Releases (> 1990)' ? 'bold' : 'normal'
                       }} 
                       label="New Releases (> 1990)" 
                       // variant="outlined" 
@@ -294,9 +321,9 @@ const SignInQuestionnaire = () => {
                     <Chip 
                       onClick={() => handleTimeChipClick('Anything works!')}
                       style={{ 
-                        backgroundColor: selectedChipTime === 'Anything works!' ? '#b196e4' : '#3a3a3b',
+                        backgroundColor: selectedChipTimeDisplay === 'Anything works!' ? '#b196e4' : '#3a3a3b',
                         color: 'white',
-                        fontWeight: selectedChipTime === 'Anything works!' ? 'bold' : 'normal'
+                        fontWeight: selectedChipTimeDisplay === 'Anything works!' ? 'bold' : 'normal'
                       }} 
                       label="Anything works!" 
                       // variant="outlined"
@@ -328,12 +355,12 @@ const SignInQuestionnaire = () => {
         </div> */}
         </MDBContainer>
         
-        {selectedOption === 'Movies' && (
+        {selectedRecommOption === 'Movies' && (
           <div style={{ position: 'absolute', bottom: 10, left: 20, zIndex: 0, width: '20%' }}>
             <img src={horrorImg} alt="Right Side Image" style={{ width: '100%', height: 'auto', zIndex: 0 }} />
           </div>
         )}
-        {selectedOption === 'Music' && (
+        {selectedRecommOption === 'Music' && (
           <div style={{ position: 'absolute', bottom: 0, left: '78vw', zIndex: 0 }}>
             <img src={musicImg} alt="Left Side Image" style={{ width: '102%', height: 'auto', zIndex: 0  }} />
           </div>
