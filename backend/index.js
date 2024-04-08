@@ -36,6 +36,7 @@ app.use('/api/ml', createProxyMiddleware({
 const signup = require('./routes/signup_old');
 const login = require("./routes/login");
 // const signinquestions = require("./routes/signinquestions");
+const questionnaire = require('./routes/questionnaire');
 const userdashboard = require("./routes/userdashboard");
 // const hotel = require("./routes/hotel");
 // const email = require("./routes/share");
@@ -57,6 +58,7 @@ app.use('/admin', admin);
 // app.use("/getreservations",reservation);
 app.use('/users', users);
 app.use('/userdashboard', userdashboard);
+app.use('/questionnaire', questionnaire);
 
 // Use the movie details router. Assuming the route defined inside movieDetails.js starts with '/movie/details/:id'
 app.use(movieDetails);
