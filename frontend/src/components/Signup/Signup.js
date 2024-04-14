@@ -90,9 +90,6 @@ class Signup extends PureComponent {
     const data = {
       name: this.state.username,
       email: this.state.useremail,
-      // contact: this.state.usercontact,
-      // weight: this.state.userweight,
-      // height: this.state.userheight,
       password: this.state.password,
       dob: this.state.dob,
     };
@@ -113,7 +110,7 @@ class Signup extends PureComponent {
         //var isadmin = localStorage.getItem('admin');
         if (response.status === 200) {
           await this.setState({
-            redirect: '/userdashboard',
+            redirect: '/signupquestions_a',
           });
         }
       })

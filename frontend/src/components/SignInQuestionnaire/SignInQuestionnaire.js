@@ -77,7 +77,7 @@ const BootstrapInput = styled(InputBase)(({ theme }) => ({
 }));
 
 const SignInQuestionnaire = () => {
-
+  console.log(jwtDecode(localStorage.getItem("currentUser")).user_id)
   const history = useHistory();
 
   const [redirect, setRedirect] = useState(null);
