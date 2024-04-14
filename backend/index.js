@@ -33,7 +33,7 @@ app.use('/api/ml', createProxyMiddleware({
   },
 }));
 
-const signup = require('./routes/signup_old');
+const signup = require('./routes/signup');
 const login = require("./routes/login");
 // const signinquestions = require("./routes/signinquestions");
 const questionnaire = require('./routes/questionnaire');
