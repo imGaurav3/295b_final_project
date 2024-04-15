@@ -32,7 +32,7 @@ router.post("/", (req, res) => {
       return data;
     })
     .then((results) => {
-      const payload = { user_id: results[0].user_id };
+      const payload = { user_id: results[0].id };
       console.log("PAYLOAD+++", payload);
       const token = jwt.sign(payload, process.env.Secret, {
         expiresIn: 60 * 60,
@@ -69,7 +69,7 @@ router.post("/testlogin", (req, res) => {
       return data;
     })
     .then((results) => {
-      const payload = { user_id: results[0].user_id };
+      const payload = { user_id: results[0].id };
       console.log("PAYLOAD+++", payload);
       const token = jwt.sign(payload, process.env.Secret, {
         expiresIn: 60 * 60,

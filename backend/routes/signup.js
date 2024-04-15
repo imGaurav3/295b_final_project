@@ -43,7 +43,7 @@ router.post('/signup', (req, res) => {
           }
 
           // Use the inserted user's ID for the JWT payload
-          const payload = { user_id: results.insertId };
+          const payload = { user_id: results.id };
           const token = jwt.sign(payload, process.env.Secret, {
             expiresIn: '1h',
           });

@@ -18,7 +18,7 @@ class Login extends PureComponent {
     this.state = {
       email: '',
       password: '',
-      redirect: '/login',
+      redirect: '/login/',
     };
   }
 
@@ -42,7 +42,7 @@ class Login extends PureComponent {
       password: this.state.password,
     };
     axios({
-      url: `${url}/login`,
+      url: `${url}/login/`,
       method: 'post',
       data: data,
     })
@@ -148,13 +148,13 @@ class Login extends PureComponent {
                 </div>
                 <div href='/signinquestions' className='text-center pt-1 mb-2 pb-1'>
                   <Button
-                    // onClick={this.userlogin}
+                    onClick={this.userlogin}
                     style={{
                       backgroundColor: '#A388C5',
                       color: '#F7F7FF',
                       borderRadius: '5px',
                     }}
-                    href='/signinquestions'
+                    //href='/signinquestions'
                   >
                     Sign In
                   </Button>
