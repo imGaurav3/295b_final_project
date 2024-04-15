@@ -83,7 +83,7 @@ class Login extends PureComponent {
     }
     return (
       <div style={{display: 'flex', flexDirection: 'column', width: '100%'}}>
-        <Navbar />
+        {/* <Navbar /> */}
         <MDBContainer className='Auth-form-container login-page'>
           {redirectVar}
           <MDBRow>

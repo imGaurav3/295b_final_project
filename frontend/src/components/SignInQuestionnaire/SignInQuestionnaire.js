@@ -77,7 +77,7 @@ const BootstrapInput = styled(InputBase)(({ theme }) => ({
 }));
 
 const SignInQuestionnaire = () => {
-  console.log(jwtDecode(localStorage.getItem("currentUser")).user_id)
+  // console.log(jwtDecode(localStorage.getItem("currentUser")).user_id)
   const history = useHistory();
 
   const [redirect, setRedirect] = useState(null);
@@ -149,7 +149,7 @@ const SignInQuestionnaire = () => {
 
   return (
     <div className='signin-questions-page' style={{display: 'flex', flexDirection: 'column', width: '100%'}}>
-      <Navbar/>
+      {/* <Navbar/> */}
       {redirect && <Redirect to={redirect} />}
       <MDBContainer className='signup-form-left'>
         <MDBRow>

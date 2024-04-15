@@ -126,7 +126,7 @@ class Signup extends PureComponent {
     }
     return (
       <div className='signup-page' style={{display: 'flex', flexDirection: 'column', width: '100%'}}>
-        <Navbar />
+        {/* <Navbar /> */}
         {redirectVar}
         <MDBContainer className='my-5 signup-form-left'>
           <MDBRow>

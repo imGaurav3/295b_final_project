@@ -90,7 +90,7 @@ function CustomTabPanel(props) {
   
     return (
         <div className='dashboard-page' style={{display: 'flex', flexDirection: 'column', width: '100%'}}>
-        <Navbar/>
+        {/* <Navbar/> */}
 
         {/* <MDBContainer display="flex" style={{paddingTop: '20px', zIndex: '1'}}> */}
         <div style={{paddingTop: '20px', zIndex: '1', width: '95%'}}>

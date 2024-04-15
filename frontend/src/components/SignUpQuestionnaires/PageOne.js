@@ -80,7 +80,7 @@ const PageOne = () => {
 
   return (
     <div className='signup-questions-page' style={{display: 'flex', flexDirection: 'column', width: '100%'}}>
-      <Navbar/>
+      {/* <Navbar/> */}
 
       <MDBContainer className='signup-form-left' display="flex" style={{paddingTop: '20px', zIndex: '1'}}>
 
