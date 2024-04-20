@@ -7,7 +7,7 @@ const HttpCodes = require('../enums/http-codes');
 require('dotenv/config');
 const pool = require('../mysql_db');
 
-// Sign In
+// Sign In Questionairre
 router.post('/submit_signin_ques', async (req, res) => {
   // Extract values from the request body
   const { user_id, mood, recommOption, chipGroup, chipTime } = req.body;
@@ -20,29 +20,32 @@ router.post('/submit_signin_ques', async (req, res) => {
   }
 
   try {
-    // Prepare the SQL query
-    const insertSql = `
+    // Prepare the SQL query with updated UPSERT logic using an alias
+    const upsertSql = `
       INSERT INTO questionnaire_responses(user_id, mood, interest, with_whom, time_preference)
-      VALUES (?, ?, ?, ?, ?);
+      VALUES (?, ?, ?, ?, ?) AS new_values(user_id, mood, interest, with_whom, time_preference)
+      ON DUPLICATE KEY UPDATE
+        mood = new_values.mood,
+        interest = new_values.interest,
+        with_whom = new_values.with_whom,
+        time_preference = new_values.time_preference;
     `;
     const values = [user_id, mood, recommOption, chipGroup, chipTime];
 
-    // Use pool.then().then() structure for handling database operations
+    // Using pool to handle database operations
     pool
       .then((p) => {
-        // Get a connection from the pool
         return p.getConnection().then((connection) => {
           // Begin transaction
           connection.beginTransaction();
 
-          // Execute the query with the provided values
+          // Execute the UPSERT query
           return connection
-            .query(insertSql, values)
+            .query(upsertSql, values)
             .then((results) => {
+              // Check if rows are affected
               if (results.affectedRows === 0) {
-                throw new Error(
-                  'New questionnaire response has not been added.'
-                );
+                throw new Error('No changes were made to the questionnaire response.');
               }
 
               // Commit transaction and release connection
@@ -51,39 +54,33 @@ router.post('/submit_signin_ques', async (req, res) => {
 
               // Respond with success message
               res.status(HttpCodes.OK).json({
-                message: 'Questionnaire responses stored successfully.',
+                message: 'Questionnaire responses updated successfully.',
               });
             })
             .catch((err) => {
-              // On error, rollback transaction and release connection
+              // Rollback transaction and release connection on error
               connection.rollback(() => connection.release());
 
               // Send error response
-              res
-                .status(HttpCodes.InternalServerError)
-                .json({ errmessage: err.message });
+              res.status(HttpCodes.InternalServerError).json({ errmessage: err.message });
             });
         });
       })
       .catch((err) => {
         // Send error response if failed to get connection from pool
-        res
-          .status(HttpCodes.InternalServerError)
-          .json({ errmessage: 'Failed to get database connection.' });
+        res.status(HttpCodes.InternalServerError).json({ errmessage: 'Failed to get database connection.' });
       });
   } catch (err) {
     console.error(err);
-    res
-      .status(HttpCodes.InternalServerError)
-      .json({ errmessage: 'Error storing questionnaire responses.' });
+    res.status(HttpCodes.InternalServerError).json({ errmessage: 'Error updating questionnaire responses.' });
   }
 });
+
 
 // POST API to handle signup questionnaire submission
 // Signup
 router.post('/submit_signup_ques', async (req, res) => {
-  const { user_id, fav_movie, happy_movie, sad_movie, neutral_movie } =
-    req.body;
+  const { user_id, fav_movie, happy_movie, sad_movie, neutral_movie } = req.body;
 
   // Check for required fields
   if (!user_id || !fav_movie || !happy_movie || !sad_movie || !neutral_movie) {
@@ -91,30 +88,34 @@ router.post('/submit_signup_ques', async (req, res) => {
       .status(HttpCodes.BadRequest)
       .json({ errmessage: 'Please provide all required fields' });
   }
+
   try {
-    // Prepare the SQL query
-    const insertSql = `
+    // Prepare the SQL query with UPSERT logic
+    const upsertSql = `
       INSERT INTO movie_preferences (user_id, fav_movie, happy_movie, sad_movie, neutral_movie)
-      VALUES (?, ?, ?, ?, ?);
-  `;
+      VALUES (?, ?, ?, ?, ?) AS new_values(user_id, fav_movie, happy_movie, sad_movie, neutral_movie)
+      ON DUPLICATE KEY UPDATE
+        fav_movie = new_values.fav_movie,
+        happy_movie = new_values.happy_movie,
+        sad_movie = new_values.sad_movie,
+        neutral_movie = new_values.neutral_movie;
+    `;
     const values = [user_id, fav_movie, happy_movie, sad_movie, neutral_movie];
 
     // Use pool.then().then() structure for handling database operations
     pool
       .then((p) => {
-        // Get a connection from the pool
         return p.getConnection().then((connection) => {
           // Begin transaction
           connection.beginTransaction();
 
-          // Execute the query with the provided values
+          // Execute the UPSERT query
           return connection
-            .query(insertSql, values)
+            .query(upsertSql, values)
             .then((results) => {
+              // Check if rows are affected
               if (results.affectedRows === 0) {
-                throw new Error(
-                  'New questionnaire response has not been added.'
-                );
+                throw new Error('No changes were made to your movie preferences.');
               }
 
               // Commit transaction and release connection
@@ -123,31 +124,25 @@ router.post('/submit_signup_ques', async (req, res) => {
 
               // Respond with success message
               res.status(HttpCodes.OK).json({
-                message: 'Questionnaire responses stored successfully.',
+                message: 'Movie preferences updated successfully.',
               });
             })
             .catch((err) => {
-              // On error, rollback transaction and release connection
+              // Rollback transaction and release connection on error
               connection.rollback(() => connection.release());
 
               // Send error response
-              res
-                .status(HttpCodes.InternalServerError)
-                .json({ errmessage: err.message });
+              res.status(HttpCodes.InternalServerError).json({ errmessage: err.message });
             });
         });
       })
       .catch((err) => {
         // Send error response if failed to get connection from pool
-        res
-          .status(HttpCodes.InternalServerError)
-          .json({ errmessage: 'Failed to get database connection.' });
+        res.status(HttpCodes.InternalServerError).json({ errmessage: 'Failed to get database connection.' });
       });
   } catch (err) {
     console.error(err);
-    res
-      .status(HttpCodes.InternalServerError)
-      .json({ errmessage: 'Error storing questionnaire responses.' });
+    res.status(HttpCodes.InternalServerError).json({ errmessage: 'Error updating movie preferences.' });
   }
 });
 
