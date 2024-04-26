@@ -1,10 +1,54 @@
+from movieRec import recommend_movies
 from flask import Flask, render_template, request, jsonify
 from flask_cors import CORS
 import pandas as pd
+import mysql.connector
 import pickle
 
 app = Flask(__name__)
 CORS(app)
+
+##################### Database Conn & MySQL APIs ########################
+
+
+def mysql_connect():
+    conn = mysql.connector.connect(
+        host='dbfinalproject.cpcem4w6a78y.us-east-1.rds.amazonaws.com',
+        user='admin',
+        password='295bfinalproject',
+        database='finaldb'
+    )
+    return conn
+
+
+def get_user_movie_data(user_id):
+    conn = mysql_connect()
+    cursor = conn.cursor(dictionary=True)
+    query = "SELECT * FROM movie_preferences WHERE user_id = %s"
+    cursor.execute(query, (user_id,))
+    result = cursor.fetchone()
+    cursor.close()
+    conn.close()
+    return result
+
+
+# api to get values for signin questionairre
+# output format: {'user_id': 4, 'mood': 'happy', 'time_preference': 'latest'}
+def get_signin_ques_data(user_id):
+    conn = mysql_connect()
+    cursor = conn.cursor(dictionary=True)
+    query = "SELECT user_id, mood, time_preference FROM questionnaire_responses WHERE user_id = %s"
+    cursor.execute(query, (user_id,))
+    result = cursor.fetchone()
+    cursor.close()
+    conn.close()
+    return result
+
+
+########################################################################
+
+
+############################# Music Model APIs ##################################
 
 # Load the scaler
 with open('scaler.pkl', 'rb') as scaler_file:
@@ -136,6 +180,32 @@ def predict():
         recomm_url = []
     return jsonify(recomm_url)
 
+########################################################################
+
+
+############################# Movie Model APIs ##################################
+# Tmdb API key: de8a7853bbd000984d6455656338eb6d
+# https://api.themoviedb.org/3/movie/278?api_key=de8a7853bbd000984d6455656338eb6d
+
+@app.route('/recommend/movie', methods=['POST'])
+def recommend():
+    data = request.get_json()
+    user_id = data['user_id']
+    pref_era = data['pref_era']
+    curr_mood = data['curr_mood']
+
+    user_data = get_user_movie_data(user_id)
+    print(user_data)
+    movies = pd.read_csv('./tmdb2024.csv')
+    filtered_movies = movies[movies['Release_Era'] == pref_era]
+    recommendations = recommend_movies(
+        user_data, filtered_movies, curr_mood, 10)
+    movie_tmdb = [
+        f"https://api.themoviedb.org/3/movie/{movie_id}?api_key=de8a7853bbd000984d6455656338eb6d" for movie_id in recommendations]
+    return jsonify(movie_tmdb)
+
+
+#################################################################################
 
 if __name__ == '__main__':
     app.run(debug=True)

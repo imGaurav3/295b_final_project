@@ -10,6 +10,8 @@ Repo for Master's Final Project for stress management application
 4.  Install the required libraries using pip and requirements.txt: pip install -r requirements.txt
 5.  To run the flask app on port 5000, run this command: python app.py
 
+For developers - run pip freeze > requirements.txt to store new installed libraries in requirements.txt
+
 ## To setup and start node.js based backend: (make sure you have node and npm installed)
 
 1. cd into backend location using: cd backend
