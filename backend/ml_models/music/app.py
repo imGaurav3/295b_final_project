@@ -189,10 +189,14 @@ def predict():
 
 @app.route('/recommend/movie', methods=['POST'])
 def recommend():
-    data = request.get_json()
-    user_id = data['user_id']
-    pref_era = data['pref_era']
-    curr_mood = data['curr_mood']
+    # data = request.get_json()
+    # user_id = data['user_id']
+    # pref_era = data['pref_era']
+    # curr_mood = data['curr_mood']
+
+    user_id = 7
+    pref_era = "latest"
+    curr_mood = "happy"
 
     user_data = get_user_movie_data(user_id)
     print(user_data)
