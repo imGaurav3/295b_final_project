@@ -98,9 +98,6 @@ const SignInQuestionnaire = () => {
   };
 
   const handleExploreRecommendations = async () => {
-    // // Navigate to the dashboard route when Explore Recommendations button is clicked
-    // // history.push('/dashboard');
-    // history.push(`/dashboard?selectedOption=${selectedRecommOption}`);
 
     try {
       // Map mood to lowercase string based on selection
@@ -117,19 +114,28 @@ const SignInQuestionnaire = () => {
       }
 
       // Make POST request to backend API with mapped values
-      const response = await axios.post('http://localhost:3001/questionnaire/submit_signin_ques/', {
-        user_id: '9', // Replace with actual user ID
-        mood: moodString,
-        recommOption: selectedRecommOption,
-        chipGroup: selectedChipGroup,
-        chipTime: chipTimeMapping
+      const response = await axios({
+        url: `${url}/questionnaire/submit_signin_ques`,
+        method: 'post',
+        data: {
+          user_id: '9', // Replace with actual user ID
+          mood: moodString,
+          recommOption: selectedRecommOption,
+          chipGroup: selectedChipGroup,
+          chipTime: chipTimeMapping
+        }
       });
 
-      console.log(response.data); // Log the response data
+      // Log the response data
+      console.log(response.data);
+
+      // Navigate to dashboard route with selected option parameter
       history.push(`/dashboard?selectedOption=${selectedRecommOption}`);
-  } catch (error) {
+    } catch (error) {
+      // Handle error
       console.error('Error posting data to API:', error);
     }
+
   };
 
   const handleOptionChange = (option) => {
