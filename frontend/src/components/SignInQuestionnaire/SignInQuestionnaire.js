@@ -97,30 +97,40 @@ const SignInQuestionnaire = () => {
     setMood(event.target.value);
   };
 
-  const handleExploreRecommendations = () => {
-    // Navigate to the dashboard route when Explore Recommendations button is clicked
-    // history.push('/dashboard');
-    history.push(`/dashboard?selectedOption=${selectedRecommOption}`);
+  const handleExploreRecommendations = async () => {
+    // // Navigate to the dashboard route when Explore Recommendations button is clicked
+    // // history.push('/dashboard');
+    // history.push(`/dashboard?selectedOption=${selectedRecommOption}`);
+
+    try {
+      // Map mood to lowercase string based on selection
+      const moodString = selectedMood.toLowerCase();
+
+      // Map chipTime to 'latest', 'mid', or 'old' based on selection
+      let chipTimeMapping = '';
+      if (selectedChipTimeDisplay === 'New Releases (> 2022)') {
+        chipTimeMapping = 'latest';
+      } else if (selectedChipTimeDisplay === 'Recent Releases (2010-2021)') {
+        chipTimeMapping = 'mid';
+      } else if (selectedChipTimeDisplay === 'Classics (< 2010)') {
+        chipTimeMapping = 'old';
+      }
+
+      // Make POST request to backend API with mapped values
+      const response = await axios.post('http://localhost:3001/questionnaire/submit_signin_ques/', {
+        user_id: '9', // Replace with actual user ID
+        mood: moodString,
+        recommOption: selectedRecommOption,
+        chipGroup: selectedChipGroup,
+        chipTime: chipTimeMapping
+      });
+
+      console.log(response.data); // Log the response data
+      history.push(`/dashboard?selectedOption=${selectedRecommOption}`);
+  } catch (error) {
+      console.error('Error posting data to API:', error);
+    }
   };
-
-  // const handleExploreRecommendations = () => {
-  //   axios.post('YOUR_API_ENDPOINT', {
-  //     mood: selectedMood,
-  //     selectedRecommOption: selectedRecommOption,
-  //     selectedChipGroup: selectedChipGroup,
-  //     selectedChipTime: selectedChipTimeSend // Send the formatted selected chip time
-  //   })
-  //   .then(response => {
-  //     console.log(response);
-  //     // Redirect to dashboard after successful API call
-  //     history.push('/dashboard');
-  //   })
-  //   .catch(error => {
-  //     console.error('Error posting data to API: ', error);
-  //   });
-
-  //   // history.push('/dashboard');
-  // };
 
   const handleOptionChange = (option) => {
     setSelectedRecommOption(option);
@@ -299,35 +309,36 @@ const SignInQuestionnaire = () => {
                 <div style={{ display: 'flex', fontFamily: 'Hind', zIndex: 2}}>
                   <Stack direction="row" spacing={1}>
                     <Chip 
-                      onClick={() => handleTimeChipClick('Classics (< 1990)')}
+                      onClick={() => handleTimeChipClick('Classics (< 2010)')}
                       style={{  
-                        backgroundColor: selectedChipTimeDisplay === 'Classics (< 1990)' ? '#b196e4' : '#3a3a3b',
+                        backgroundColor: selectedChipTimeDisplay === 'Classics (< 2010)' ? '#b196e4' : '#3a3a3b',
                         color: 'white',
-                        fontWeight: selectedChipTimeDisplay === 'Classics (< 1990)' ? 'bold' : 'normal'
+                        fontWeight: selectedChipTimeDisplay === 'Classics (< 2010)' ? 'bold' : 'normal'
                       }} 
-                      label="Classics (< 1990)" 
+                      label="Classics (< 2010)" 
                       // variant="outlined"
                       />
                     <Chip 
-                      onClick={() => handleTimeChipClick('New Releases (> 1990)')} 
+                      onClick={() => handleTimeChipClick('Recent Releases (2010-2021)')}
                       style={{ 
-                        backgroundColor: selectedChipTimeDisplay === 'New Releases (> 1990)' ? '#b196e4' : '#3a3a3b',
+                        backgroundColor: selectedChipTimeDisplay === 'Recent Releases (2010-2021)' ? '#b196e4' : '#3a3a3b',
                         color: 'white',
-                        fontWeight: selectedChipTimeDisplay === 'New Releases (> 1990)' ? 'bold' : 'normal'
+                        fontWeight: selectedChipTimeDisplay === 'Recent Releases (2010-2021)' ? 'bold' : 'normal'
                       }} 
-                      label="New Releases (> 1990)" 
-                      // variant="outlined" 
-                    />
-                    <Chip 
-                      onClick={() => handleTimeChipClick('Anything works!')}
-                      style={{ 
-                        backgroundColor: selectedChipTimeDisplay === 'Anything works!' ? '#b196e4' : '#3a3a3b',
-                        color: 'white',
-                        fontWeight: selectedChipTimeDisplay === 'Anything works!' ? 'bold' : 'normal'
-                      }} 
-                      label="Anything works!" 
+                      label="Recent Releases (2010-2021)" 
                       // variant="outlined"
                     />
+                    <Chip 
+                      onClick={() => handleTimeChipClick('New Releases (> 2022)')} 
+                      style={{ 
+                        backgroundColor: selectedChipTimeDisplay === 'New Releases (> 2022)' ? '#b196e4' : '#3a3a3b',
+                        color: 'white',
+                        fontWeight: selectedChipTimeDisplay === 'New Releases (> 2022)' ? 'bold' : 'normal'
+                      }} 
+                      label="New Releases (> 2022)" 
+                      // variant="outlined" 
+                    />
+                    
                   </Stack>
                 </div>
                   
