@@ -14,6 +14,7 @@ import { styled } from '@mui/material/styles';
 import { useHistory } from 'react-router-dom';
 import url from "../../utils/urlconfig";
 import jwtDecode from "jwt-decode";
+import axios from 'axios';
 
 const ColorButton = styled(Button)(({ theme }) => ({
   color: 'white',
@@ -56,9 +57,28 @@ const PageOne = () => {
         }
     };
 
-    const handleExploreRecommendations = () => {
+    const handleExploreRecommendations = async () => {
       // Navigate to the dashboard route when Explore Recommendations button is clicked
-      history.push('/dashboard');
+      // history.push('/dashboard');
+
+        try {
+          const requestBody = {
+            user_id: 9,
+            happy_movie: selectedHappyChips.map(genre => genre.toLowerCase()).join(','),
+            sad_movie: selectedSadChips.map(genre => genre.toLowerCase()).join(','),
+            neutral_movie: selectedNeutralChips.map(genre => genre.toLowerCase()).join(',')
+          };
+      
+          const response = await axios.post(`${url}/questionnaire/submit_signup_ques`, requestBody);
+      
+          console.log(response.data); // Log the response data (optional)
+      
+          // Redirect to the dashboard route upon successful response
+          history.push('/dashboard');
+        } catch (error) {
+          console.error('Error submitting preferences:', error);
+          // Handle error if needed (e.g., display error message to user)
+        }
     };
 
 // Array containing the options for chips
@@ -87,7 +107,7 @@ const PageOne = () => {
         <MDBRow>
            
             <MDBCol col='6' className='mb-5'>
-            <div className="signin-ques-page" style={{ paddingLeft: '20px', paddingTop: '12px'}}>
+            <div className="signin-ques-page" style={{ paddingLeft: '20px', paddingTop: '25px'}}>
               <h1 className='bookheading text-center' style={{ fontWeight: 'bold' }}>
                 Let's get you set up!
               </h1>
@@ -102,9 +122,9 @@ const PageOne = () => {
                 <div className='regular-text' style={{ paddingBottom: '5px' }}>
                     Select up to 3 genres that you like the most. We'll use this info to recommend movies you might like.
                 </div>
-                <div className='questionnaire-labels' style={{ paddingBottom: '2px', paddingTop: '15px', fontSize: '17px', fontWeight: 'bolder' }}>
+                {/* {/* <div className='questionnaire-labels' style={{ paddingBottom: '2px', paddingTop: '15px', fontSize: '17px', fontWeight: 'bolder' }}>
                   What is your favorite movie genre overall?
-                </div>
+                </div> 
                 
                 <div style={{ display: 'flex', flexWrap: 'wrap', gap: '15px', marginTop: '7px' }}>
                   {chipOptions.map((option, index) => (
@@ -120,7 +140,7 @@ const PageOne = () => {
                       label={option}
                     />
                   ))}
-                </div>
+                </div> */}
 
                 <br></br>
 
@@ -193,7 +213,7 @@ const PageOne = () => {
 
                 <br></br>
 
-                <div style={{display: 'flex', justifyContent: 'center', zIndex: 1, paddingTop: '10px'}}>
+                <div style={{display: 'flex', justifyContent: 'center', zIndex: 1, paddingTop: '20px'}}>
                   <ColorButton variant="contained" endIcon={<ArrowForwardIcon />} onClick={handleExploreRecommendations}>
                     Explore Recommendations! 
                   </ColorButton>
