@@ -80,10 +80,10 @@ router.post('/submit_signin_ques', async (req, res) => {
 // POST API to handle signup questionnaire submission
 // Signup
 router.post('/submit_signup_ques', async (req, res) => {
-  const { user_id, fav_movie, happy_movie, sad_movie, neutral_movie } = req.body;
+  const { user_id, happy_movie, sad_movie, neutral_movie } = req.body;
 
   // Check for required fields
-  if (!user_id || !fav_movie || !happy_movie || !sad_movie || !neutral_movie) {
+  if (!user_id || !happy_movie || !sad_movie || !neutral_movie) {
     return res
       .status(HttpCodes.BadRequest)
       .json({ errmessage: 'Please provide all required fields' });
@@ -92,15 +92,14 @@ router.post('/submit_signup_ques', async (req, res) => {
   try {
     // Prepare the SQL query with UPSERT logic
     const upsertSql = `
-      INSERT INTO movie_preferences (user_id, fav_movie, happy_movie, sad_movie, neutral_movie)
-      VALUES (?, ?, ?, ?, ?) AS new_values(user_id, fav_movie, happy_movie, sad_movie, neutral_movie)
+      INSERT INTO genre_preferences (user_id, happy_movie, sad_movie, neutral_movie)
+      VALUES (?, ?, ?, ?) AS new_values(user_id, happy_movie, sad_movie, neutral_movie)
       ON DUPLICATE KEY UPDATE
-        fav_movie = new_values.fav_movie,
         happy_movie = new_values.happy_movie,
         sad_movie = new_values.sad_movie,
         neutral_movie = new_values.neutral_movie;
     `;
-    const values = [user_id, fav_movie, happy_movie, sad_movie, neutral_movie];
+    const values = [user_id, happy_movie, sad_movie, neutral_movie];
 
     // Use pool.then().then() structure for handling database operations
     pool

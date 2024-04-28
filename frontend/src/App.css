@@ -216,7 +216,7 @@ body {
   display: flex;
   justify-content: center; /* Horizontally center */
   align-items: center; /* Vertically center */
-  height: 100vh; /* Ensure the form is vertically centered on the page */
+  /* height: 100vh; Ensure the form is vertically centered on the page */
   overflow: hidden;
 }
 
