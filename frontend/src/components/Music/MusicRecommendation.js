@@ -3,15 +3,9 @@ import React, { PureComponent } from 'react';
 import { Redirect } from 'react-router';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../../App.css';
+import jwtDecode from "jwt-decode";
 // import Button from 'react-bootstrap/Button';
 import { MDBContainer, MDBRow, MDBCol } from 'mdb-react-ui-kit';
-
-// import * as React from 'react';
-// import Card from '@mui/material/Card';
-// import CardContent from '@mui/material/CardContent';
-// import CardMedia from '@mui/material/CardMedia';
-// import Typography from '@mui/material/Typography';
-// import { CardActionArea } from '@mui/material';
 
 import music1 from '../../images/Music-rafiki.png'
 import music2 from '../../images/Headphone-rafiki.png'
@@ -30,8 +24,12 @@ class MusicRecommendation extends PureComponent {
   }
 
   fetchMusicUrls = () => {
+
+    const currentUser = localStorage.getItem("currentUser");
+    const user_id = currentUser ? jwtDecode(currentUser).user_id : 'default_user_id';
+
     // Assuming your API returns a JSON object with an array of URLs
-    fetch('http://127.0.0.1:5000/predict')
+    fetch(`http://127.0.0.1:5000/predict?userid=${user_id}`)
       .then(response => response.json())
       .then(data => {
         // Assuming 'data' is the array of URLs. Adjust the path according to your API response structure

@@ -21,10 +21,12 @@ def mysql_connect():
     return conn
 
 
+# api to get values for signup questionairre
+# output format: {'happy_movie': 'Action, Horror', 'sad_movie': 'Comedy, Family', 'neutral_movie': 'Drama, Romance', 'user_id': 7}
 def get_user_movie_data(user_id):
     conn = mysql_connect()
     cursor = conn.cursor(dictionary=True)
-    query = "SELECT * FROM movie_preferences WHERE user_id = %s"
+    query = "SELECT * FROM genre_preferences WHERE user_id = %s"
     cursor.execute(query, (user_id,))
     result = cursor.fetchone()
     cursor.close()
@@ -164,9 +166,20 @@ def index():
 
 @app.route('/predict', methods=['GET'])
 def predict():
-    user_mood = "happy"
-    print(user_mood)
-    user_era = "latest"
+    # user_mood = "happy"
+    # user_era = "latest"
+
+    # Retrieve the user_id from query parameters
+    # 'default_user_id' is a fallback if no userid is provided
+    user_id = request.args.get('userid', 'default_user_id')
+    print(f"User ID: {user_id}")
+
+    signin_res = get_signin_ques_data(user_id)
+    print(signin_res['mood'])
+
+    user_mood = signin_res['mood']
+    user_era = signin_res['time_preference']
+    print(user_era)
 
     recommendations = recommend_songs_for_user_preferences(
         multi_target_rf, df, scaler, user_mood, user_era, 5)
@@ -180,6 +193,7 @@ def predict():
         recomm_url = []
     return jsonify(recomm_url)
 
+
 ########################################################################
 
 
@@ -189,10 +203,6 @@ def predict():
 
 @app.route('/recommend/movie', methods=['GET'])
 def recommend():
-    # data = request.get_json()
-    # user_id = data['user_id']
-    # pref_era = data['pref_era']
-    # curr_mood = data['curr_mood']
 
     user_id = 7
     pref_era = "latest"
@@ -203,9 +213,9 @@ def recommend():
     movies = pd.read_csv('./tmdb2024.csv')
     filtered_movies = movies[movies['Release_Era'] == pref_era]
     recommendations = recommend_movies(
-        user_data, filtered_movies, curr_mood, 10)
+        user_data, filtered_movies, curr_mood, 5)
     movie_tmdb = [
-        f"https://api.themoviedb.org/3/movie/{movie_id}?api_key=de8a7853bbd000984d6455656338eb6d" for movie_id in recommendations]
+        f"https://api.themoviedb.org/3/movie/{movie_id[0]}?api_key=de8a7853bbd000984d6455656338eb6d" for movie_id in recommendations]
     return jsonify(movie_tmdb)
 
 
