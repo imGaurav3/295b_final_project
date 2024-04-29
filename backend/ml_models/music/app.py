@@ -187,7 +187,7 @@ def predict():
 # Tmdb API key: de8a7853bbd000984d6455656338eb6d
 # https://api.themoviedb.org/3/movie/278?api_key=de8a7853bbd000984d6455656338eb6d
 
-@app.route('/recommend/movie', methods=['POST'])
+@app.route('/recommend/movie', methods=['GET'])
 def recommend():
     # data = request.get_json()
     # user_id = data['user_id']
