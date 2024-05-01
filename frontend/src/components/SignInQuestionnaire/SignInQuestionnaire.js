@@ -118,7 +118,7 @@ const SignInQuestionnaire = () => {
         url: `${url}/questionnaire/submit_signin_ques`,
         method: 'post',
         data: {
-          user_id: '9', // Replace with actual user ID
+          user_id: jwtDecode(localStorage.getItem("currentUser")).user_id,
           mood: moodString,
           recommOption: selectedRecommOption,
           chipGroup: selectedChipGroup,

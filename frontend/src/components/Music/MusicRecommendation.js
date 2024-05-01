@@ -4,6 +4,7 @@ import { Redirect } from 'react-router';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../../App.css';
 import jwtDecode from "jwt-decode";
+import url_flask from '../../utils/urlflaskconfig';
 // import Button from 'react-bootstrap/Button';
 import { MDBContainer, MDBRow, MDBCol } from 'mdb-react-ui-kit';
 
@@ -29,7 +30,7 @@ class MusicRecommendation extends PureComponent {
     const user_id = currentUser ? jwtDecode(currentUser).user_id : 'default_user_id';
 
     // Assuming your API returns a JSON object with an array of URLs
-    fetch(`http://127.0.0.1:5000/predict?userid=${user_id}`)
+    fetch(`${url_flask}/predict?userid=${user_id}`)
       .then(response => response.json())
       .then(data => {
         // Assuming 'data' is the array of URLs. Adjust the path according to your API response structure
