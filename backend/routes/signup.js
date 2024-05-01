@@ -43,7 +43,8 @@ router.post('/signup', (req, res) => {
           }
 
           // Use the inserted user's ID for the JWT payload
-          const payload = { user_id: results.id };
+          const payload = { user_id: results.insertId };
+          console.log(results.insertId);
           const token = jwt.sign(payload, process.env.Secret, {
             expiresIn: '1h',
           });
@@ -54,6 +55,7 @@ router.post('/signup', (req, res) => {
 
           // Respond with the JWT token
           res.status(HttpCodes.OK).send({ jwt: `JWT ${token}` });
+          console.log(token);
         })
         .catch((err) => {
           // On error, rollback transaction and release connection

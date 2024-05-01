@@ -205,8 +205,17 @@ def predict():
 def recommend():
 
     user_id = 7
-    pref_era = "latest"
-    curr_mood = "happy"
+    pref_era = "mid"
+    curr_mood = "sad"
+
+    user_id = request.args.get('userid', 'default_user_id')
+    print(f"From Movie Side User ID: {user_id}")
+
+    signin_res = get_signin_ques_data(user_id)
+
+    curr_mood = signin_res['mood']
+    pref_era = signin_res['time_preference']
+    print(pref_era)
 
     user_data = get_user_movie_data(user_id)
     print(user_data)
@@ -214,6 +223,7 @@ def recommend():
     filtered_movies = movies[movies['Release_Era'] == pref_era]
     recommendations = recommend_movies(
         user_data, filtered_movies, curr_mood, 5)
+    print(recommendations)
     movie_tmdb = [
         f"https://api.themoviedb.org/3/movie/{movie_id[0]}?api_key=de8a7853bbd000984d6455656338eb6d" for movie_id in recommendations]
     return jsonify(movie_tmdb)

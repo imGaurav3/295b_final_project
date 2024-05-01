@@ -2,6 +2,7 @@ import pandas as pd
 import numpy as np
 from sklearn.preprocessing import MultiLabelBinarizer, MinMaxScaler
 from sklearn.metrics.pairwise import cosine_similarity
+pd.options.mode.chained_assignment = None  # default='warn'
 
 
 def parse_genres(genres_str):
@@ -13,6 +14,7 @@ def recommend_movies(user_data, movies, current_mood, top_n):
     user_pref_genres = parse_genres(user_data[mood_key])
 
     # movies['Genres'] = movies['Genres'].apply(parse_genres)
+    movies['Genres'] = movies['Genres'].str.lower()
     movie_genres_df = movies[movies['Genres'].apply(
         lambda genres: any(genre in genres for genre in user_pref_genres))]
 

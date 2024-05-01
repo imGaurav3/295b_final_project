@@ -60,21 +60,21 @@ const PageOne = () => {
     const handleExploreRecommendations = async () => {
       // Navigate to the dashboard route when Explore Recommendations button is clicked
       // history.push('/dashboard');
-
+      console.log(jwtDecode(localStorage.getItem("currentUser")).user_id)
         try {
           const requestBody = {
-            user_id: 9,
-            happy_movie: selectedHappyChips.map(genre => genre.toLowerCase()).join(','),
-            sad_movie: selectedSadChips.map(genre => genre.toLowerCase()).join(','),
-            neutral_movie: selectedNeutralChips.map(genre => genre.toLowerCase()).join(',')
+            user_id: jwtDecode(localStorage.getItem("currentUser")).user_id,
+            happy_movie: selectedHappyChips.map(genre => genre.toLowerCase()).join(', '),
+            sad_movie: selectedSadChips.map(genre => genre.toLowerCase()).join(', '),
+            neutral_movie: selectedNeutralChips.map(genre => genre.toLowerCase()).join(', ')
           };
-      
+          console.log(requestBody);
           const response = await axios.post(`${url}/questionnaire/submit_signup_ques`, requestBody);
       
           console.log(response.data); // Log the response data (optional)
       
           // Redirect to the dashboard route upon successful response
-          history.push('/dashboard');
+          history.push('/signinquestions');
         } catch (error) {
           console.error('Error submitting preferences:', error);
           // Handle error if needed (e.g., display error message to user)
