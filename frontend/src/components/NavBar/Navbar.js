@@ -13,7 +13,7 @@ import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
 import moodifyIcon from '../../images/moodify_icon.png';
-import { useHistory } from 'react-router-dom'; // Import useHistory hook for navigation
+import { useHistory, useLocation } from 'react-router-dom'; // Import useHistory hook for navigation
 
 // const pages = [];
 // const settings = ['Movie Preferences', 'Current Mood', 'Logout'];
@@ -27,7 +27,8 @@ const settings = [
 function Navbar() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
-
+  
+  const location = useLocation();
   const history = useHistory(); // Access the history object for navigation
 
   const clearLocalStorage = () => {
@@ -81,6 +82,13 @@ function Navbar() {
     // Close the menu
     handleCloseUserMenu();
   };
+
+  // Check if the current location is the landing page ('/')
+  const isLandingPage = location.pathname === '/';
+
+  if (isLandingPage) {
+    return null; // If it's the landing page, do not render the Navbar
+  }
 
   return (
     <AppBar position="sticky" style={{ backgroundColor: '#272626', boxShadow: '1px 1px 6px #1b1a1a', borderBottom: '0.5px solid #767676'}}>

@@ -9,6 +9,7 @@ import MovieRecommendation from './Movie/MovieRecommendation';
 import SignInQuestionnaire from "./SignInQuestionnaire/SignInQuestionnaire";
 import PageOne from './SignUpQuestionnaires/PageOne';
 import Dashboard from './Dashboard/Dashboard';
+import LandingPage from './LandingPage/LandingPage';
 
 // import Users from './User/User'; 
 // import AdminChartsDashboard from './AdminDashboard/AdminChartsDashboard';
@@ -26,6 +27,7 @@ class Main extends PureComponent {
         {/* <SignInQuestionnaire/> */}
         <Switch>
           {/* Render Different Component based on Route */}
+          <Route exact path='/' component={LandingPage} />
           <Route exact path='/login' component={Login} />
           
           <Route exact path='/signup' component={Signup} />
