@@ -174,14 +174,21 @@ const SignInQuestionnaire = () => {
               <h1 className='bookheading text-center' style={{ fontWeight: 'bold' }}>
                 Discover Your Perfect Picks!
               </h1>
-              <div className='regular-text text-center'>
+              {/* <div className='regular-text text-center'>
                 Welcome! Let's fine-tune your entertainment choices.
               </div>
               <div className='regular-text text-center'>
                 Share your current mood and interests, and we'll do the rest.
-              </div>
-              <br></br>
+              </div> */}
               <div className='signin-ques-form'>
+                <div className='questionnaire-labels' style={{ paddingBottom: '2px', fontSize: '20px', fontWeight: 'bolder' }}>
+                  Welcome! Let's fine-tune your entertainment choices.
+                </div>
+                <div className='regular-text' style={{ paddingBottom: '5px' }}>
+                  Share your current mood and interests, and we'll do the rest.
+                </div>
+                <br></br>
+
                 <div className='questionnaire-labels' style={{ paddingBottom: '5px' }}>
                   How are you feeling today?
                 </div>
@@ -351,7 +358,7 @@ const SignInQuestionnaire = () => {
                 <br></br>
                 <br></br>
 
-                <div style={{display: 'flex', justifyContent: 'end', zIndex: 2}}>
+                <div style={{display: 'flex', justifyContent: 'center', zIndex: 2}}>
                   <ColorButton variant="contained" endIcon={<ArrowForwardIcon />} onClick={handleExploreRecommendations}>
                     Reveal Picks 
                   </ColorButton>

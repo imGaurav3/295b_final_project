@@ -13,13 +13,32 @@ import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
 import moodifyIcon from '../../images/moodify_icon.png';
+import { useHistory } from 'react-router-dom'; // Import useHistory hook for navigation
 
-const pages = ['Dashboard', 'Logout'];
-const settings = ['Change Favorite Movies', ];
+// const pages = [];
+// const settings = ['Movie Preferences', 'Current Mood', 'Logout'];
+
+const settings = [
+  { label: 'Movie Preferences', route: '/signupquestions_a' },
+  { label: 'Current Mood', route: '/signinquestions' },
+  { label: 'Logout', action: 'logout' } // Assuming 'Logout' also has a route
+];
 
 function Navbar() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
+
+  const history = useHistory(); // Access the history object for navigation
+
+  const clearLocalStorage = () => {
+    try {
+      localStorage.removeItem('currentUser'); // Clear the 'currentUser' item
+      // You can add more localStorage items to clear if needed
+      // localStorage.removeItem('admin'); // Example: Clear 'admin' item if exists
+    } catch (error) {
+      console.error('Error clearing local storage:', error);
+    }
+  };
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -34,6 +53,33 @@ function Navbar() {
 
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
+  };
+
+  const handleMenuItemClick = (item) => {
+    if (!item) {
+      console.log('Nothing!');
+      return;
+    }; // Safety check for undefined item
+    if (item.action === 'logout') {
+      // Perform logout action
+      console.log('Clicked logout')
+      try {
+        localStorage.removeItem('currentUser'); // Clear the 'currentUser' item
+        // You can add more localStorage items to clear if needed
+        // localStorage.removeItem('admin'); // Example: Clear 'admin' item if exists
+      } catch (error) {
+        console.error('Error clearing local storage:', error);
+      }
+
+      history.push('/login');
+    } else if (item.route) {
+      console.log('Clicked other option')
+      // Navigate to the specified route
+      history.push(item.route);
+    }
+
+    // Close the menu
+    handleCloseUserMenu();
   };
 
   return (
@@ -74,7 +120,7 @@ function Navbar() {
             >
               <MenuIcon />
             </IconButton>
-            <Menu
+            {/* <Menu
               id="menu-appbar"
               anchorEl={anchorElNav}
               anchorOrigin={{
@@ -97,7 +143,7 @@ function Navbar() {
                   <Typography textAlign="center">{page}</Typography>
                 </MenuItem>
               ))}
-            </Menu>
+            </Menu> */}
           </Box>
           <AdbIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
           <Typography
@@ -118,7 +164,7 @@ function Navbar() {
           >
             LOGO
           </Typography>
-          <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
+          {/* <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
             {pages.map((page) => (
               <Button
                 key={page}
@@ -128,12 +174,13 @@ function Navbar() {
                 {page}
               </Button>
             ))}
-          </Box>
+          </Box> */}
 
-          <Box sx={{ flexGrow: 0 }}>
-            <Tooltip title="Open settings">
-              <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }} style={{backgroundColor: '#b196e4'}}>
-                <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" sx={{ bgcolor: '#b196e4'}} />
+          <Box sx={{ flexGrow: 0 }} >
+            <Tooltip title="Options" style={{ fontFamily: 'Raleway' }}>
+              <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }} >
+                {/* <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" sx={{ bgcolor: '#b196e4'}} /> */}
+                <MenuIcon style={{color: '#b196e4'}}></MenuIcon>
               </IconButton>
             </Tooltip>
             <Menu
@@ -151,10 +198,16 @@ function Navbar() {
               }}
               open={Boolean(anchorElUser)}
               onClose={handleCloseUserMenu}
+              PaperProps={{
+                sx: {
+                  backgroundColor: '#212020', // Set the desired background color
+                  color: 'rgb(221, 220, 218)',
+                },
+              }}
             >
               {settings.map((setting) => (
-                <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                  <Typography textAlign="center">{setting}</Typography>
+                <MenuItem key={setting.label} onClick={() => handleMenuItemClick(setting)}>
+                  <Typography style={{ fontFamily: 'Raleway', fontSize: '13px', fontWeight: 'bold'}} textAlign="center">{setting.label}</Typography>
                 </MenuItem>
               ))}
             </Menu>
