@@ -90,6 +90,8 @@ function Navbar() {
     return null; // If it's the landing page, do not render the Navbar
   }
 
+  const isLoginPage = location.pathname === '/login/' || location.pathname === '/signup';
+
   return (
     <AppBar position="sticky" style={{ backgroundColor: '#272626', boxShadow: '1px 1px 6px #1b1a1a', borderBottom: '0.5px solid #767676'}}>
       <Container maxWidth="100vw" style={{ backgroundColor: '#212020'}}>
@@ -128,30 +130,7 @@ function Navbar() {
             >
               <MenuIcon />
             </IconButton>
-            {/* <Menu
-              id="menu-appbar"
-              anchorEl={anchorElNav}
-              anchorOrigin={{
-                vertical: 'bottom',
-                horizontal: 'right',
-              }}
-              keepMounted
-              transformOrigin={{
-                vertical: 'top',
-                horizontal: 'right',
-              }}
-              open={Boolean(anchorElNav)}
-              onClose={handleCloseNavMenu}
-              sx={{
-                display: { xs: 'block', md: 'none' },
-              }}
-            >
-              {pages.map((page) => (
-                <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center">{page}</Typography>
-                </MenuItem>
-              ))}
-            </Menu> */}
+        
           </Box>
           <AdbIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
           <Typography
@@ -172,54 +151,45 @@ function Navbar() {
           >
             LOGO
           </Typography>
-          {/* <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-            {pages.map((page) => (
-              <Button
-                key={page}
-                onClick={handleCloseNavMenu}
-                sx={{ my: 2, color: 'white', display: 'block' }}
+          
+          {!isLoginPage && (
+            <Box sx={{ flexGrow: 0 }} >
+              <Tooltip title="Options" style={{ fontFamily: 'Raleway' }}>
+                <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }} >
+                  {/* <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" sx={{ bgcolor: '#b196e4'}} /> */}
+                  <MenuIcon style={{color: '#b196e4'}}></MenuIcon>
+                </IconButton>
+              </Tooltip>
+              <Menu
+                sx={{ mt: '45px' }}
+                id="menu-appbar"
+                anchorEl={anchorElUser}
+                anchorOrigin={{
+                  vertical: 'top',
+                  horizontal: 'right',
+                }}
+                keepMounted
+                transformOrigin={{
+                  vertical: 'top',
+                  horizontal: 'right',
+                }}
+                open={Boolean(anchorElUser)}
+                onClose={handleCloseUserMenu}
+                PaperProps={{
+                  sx: {
+                    backgroundColor: '#212020', // Set the desired background color
+                    color: 'rgb(221, 220, 218)',
+                  },
+                }}
               >
-                {page}
-              </Button>
-            ))}
-          </Box> */}
-
-          <Box sx={{ flexGrow: 0 }} >
-            <Tooltip title="Options" style={{ fontFamily: 'Raleway' }}>
-              <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }} >
-                {/* <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" sx={{ bgcolor: '#b196e4'}} /> */}
-                <MenuIcon style={{color: '#b196e4'}}></MenuIcon>
-              </IconButton>
-            </Tooltip>
-            <Menu
-              sx={{ mt: '45px' }}
-              id="menu-appbar"
-              anchorEl={anchorElUser}
-              anchorOrigin={{
-                vertical: 'top',
-                horizontal: 'right',
-              }}
-              keepMounted
-              transformOrigin={{
-                vertical: 'top',
-                horizontal: 'right',
-              }}
-              open={Boolean(anchorElUser)}
-              onClose={handleCloseUserMenu}
-              PaperProps={{
-                sx: {
-                  backgroundColor: '#212020', // Set the desired background color
-                  color: 'rgb(221, 220, 218)',
-                },
-              }}
-            >
-              {settings.map((setting) => (
-                <MenuItem key={setting.label} onClick={() => handleMenuItemClick(setting)}>
-                  <Typography style={{ fontFamily: 'Raleway', fontSize: '13px', fontWeight: 'bold'}} textAlign="center">{setting.label}</Typography>
-                </MenuItem>
-              ))}
-            </Menu>
-          </Box>
+                {settings.map((setting) => (
+                  <MenuItem key={setting.label} onClick={() => handleMenuItemClick(setting)}>
+                    <Typography style={{ fontFamily: 'Raleway', fontSize: '13px', fontWeight: 'bold'}} textAlign="center">{setting.label}</Typography>
+                  </MenuItem>
+                ))}
+              </Menu>
+            </Box>
+          )}
         </Toolbar>
       </Container>
     </AppBar>
