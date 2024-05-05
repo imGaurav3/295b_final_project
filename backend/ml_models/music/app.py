@@ -219,7 +219,7 @@ def recommend():
 
     user_data = get_user_movie_data(user_id)
     print(user_data)
-    movies = pd.read_csv('./tmdb2024.csv')
+    movies = pd.read_csv('./tmdb2024_new.csv')
     filtered_movies = movies[movies['Release_Era'] == pref_era]
     recommendations = recommend_movies(
         user_data, filtered_movies, curr_mood, 5)
