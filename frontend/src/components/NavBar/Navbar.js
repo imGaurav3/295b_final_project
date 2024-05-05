@@ -56,6 +56,10 @@ function Navbar() {
     setAnchorElUser(null);
   };
 
+  const handleNavigateToLandingPage = () => {
+    history.push('/'); // Redirect to the landing page '/'
+  };
+
   const handleMenuItemClick = (item) => {
     if (!item) {
       console.log('Nothing!');
@@ -101,7 +105,8 @@ function Navbar() {
             variant="h6"
             noWrap
             component="a"
-            href="#app-bar-with-responsive-menu"
+            // href="#app-bar-with-responsive-menu"
+            onClick={handleNavigateToLandingPage}
             sx={{
               mr: 2,
               display: { xs: 'none', md: 'flex' },
@@ -110,47 +115,13 @@ function Navbar() {
               // letterSpacing: '.3rem',
               color: 'white',
               textDecoration: 'none',
-              "&:hover": { color: "white", textDecoration: 'none' }
+              "&:hover": { color: "white", textDecoration: 'none', cursor: 'pointer' }
             }}
           >
             MOODIFY
           </Typography>
 
           <Box sx={{ flexGrow: 50 }} />
-          {/* <Box sx={{ flexGrow: 1 }} />
-          <Box sx={{ flexGrow: 1 }} /> */}
-          <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
-            <IconButton
-              size="large"
-              aria-label="account of current user"
-              aria-controls="menu-appbar"
-              aria-haspopup="true"
-              onClick={handleOpenNavMenu}
-              color="inherit"
-            >
-              <MenuIcon />
-            </IconButton>
-        
-          </Box>
-          <AdbIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
-          <Typography
-            variant="h5"
-            noWrap
-            component="a"
-            href="#app-bar-with-responsive-menu"
-            sx={{
-              mr: 2,
-              display: { xs: 'flex', md: 'none' },
-              flexGrow: 1,
-              fontFamily: 'monospace',
-              fontWeight: 700,
-              letterSpacing: '.3rem',
-              color: 'inherit',
-              textDecoration: 'none',
-            }}
-          >
-            LOGO
-          </Typography>
           
           {!isLoginPage && (
             <Box sx={{ flexGrow: 0 }} >
